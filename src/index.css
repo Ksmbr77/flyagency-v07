@@ -83,7 +83,16 @@
   }
 
   .purple-gradient {
-    @apply bg-gradient-to-r from-primary-DEFAULT/80 to-secondary-DEFAULT/80;
+    @apply bg-gradient-to-r from-[#7A3B96] to-[#A57BDA];
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
   }
 }
 
