@@ -3,21 +3,21 @@ import { ArrowRight } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <div className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-b from-white via-primary-light/5 to-white dark:from-black dark:to-primary-dark/20">
+    <div className="min-h-[90vh] flex items-center relative overflow-hidden bg-gradient-to-b from-white via-primary-light/5 to-white dark:from-black dark:to-primary-dark/20">
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-r from-primary-DEFAULT/5 to-secondary-DEFAULT/5 dark:from-primary-dark/80 dark:to-black/50 mix-blend-multiply" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#A57BDA,transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#7100FF,transparent_50%)]" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
+        <div className="max-w-4xl mx-auto text-center space-y-6">
           <h4 className="text-primary-DEFAULT font-medium tracking-wide animate-fade-in [animation-delay:200ms]">
             BEM-VINDO À FLY AGENCY
           </h4>
           
           <h1 className="text-4xl md:text-6xl font-bold text-gray-800 dark:text-white leading-tight animate-fade-in [animation-delay:400ms]">
             Transformamos sua presença digital em{' '}
-            <span className="bg-gradient-to-r from-[#7A3B96] to-[#A57BDA] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#7100FF] to-[#8833FF] bg-clip-text text-transparent">
               resultados reais
             </span>
           </h1>
@@ -26,7 +26,7 @@ const Hero = () => {
             Estratégias avançadas de marketing digital para escalar seu negócio com tráfego pago, automação e produção de conteúdo profissional.
           </p>
           
-          <div className="flex flex-col md:flex-row gap-4 justify-center items-center animate-fade-in [animation-delay:800ms]">
+          <div className="flex flex-col md:flex-row gap-4 justify-center items-center animate-fade-in [animation-delay:800ms] pb-8">
             <a 
               href="https://wa.link/jgvhdu"
               target="_blank"

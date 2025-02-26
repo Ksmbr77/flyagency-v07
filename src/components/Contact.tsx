@@ -3,12 +3,12 @@ import { ArrowRight } from 'lucide-react';
 
 const Contact = () => {
   return (
-    <section id="contato" className="py-20 relative">
+    <section id="contato" className="py-16 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-black via-primary-dark/20 to-black" />
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-3xl mx-auto glass rounded-2xl p-8 md:p-12">
-          <div className="text-center mb-12 animate-fade-in">
+        <div className="max-w-3xl mx-auto neo-blur rounded-2xl p-8 md:p-12">
+          <div className="text-center mb-10 animate-fade-in">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Comece sua <span className="text-primary-DEFAULT">transformação digital</span>
             </h2>
@@ -26,7 +26,7 @@ const Contact = () => {
                 <input
                   type="text"
                   id="name"
-                  className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT"
+                  className="w-full px-4 py-3 rounded-lg bg-black/30 border border-primary-DEFAULT/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT focus:border-transparent transition-all duration-300"
                   placeholder="Seu nome completo"
                 />
               </div>
@@ -37,7 +37,7 @@ const Contact = () => {
                 <input
                   type="email"
                   id="email"
-                  className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT"
+                  className="w-full px-4 py-3 rounded-lg bg-black/30 border border-primary-DEFAULT/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT focus:border-transparent transition-all duration-300"
                   placeholder="Seu e-mail profissional"
                 />
               </div>
@@ -50,7 +50,7 @@ const Contact = () => {
               <input
                 type="tel"
                 id="phone"
-                className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT"
+                className="w-full px-4 py-3 rounded-lg bg-black/30 border border-primary-DEFAULT/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT focus:border-transparent transition-all duration-300"
                 placeholder="(00) 00000-0000"
               />
             </div>
@@ -62,14 +62,14 @@ const Contact = () => {
               <textarea
                 id="message"
                 rows={4}
-                className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT"
+                className="w-full px-4 py-3 rounded-lg bg-black/30 border border-primary-DEFAULT/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT focus:border-transparent transition-all duration-300 resize-none"
                 placeholder="Como podemos ajudar seu negócio?"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full bg-primary-DEFAULT hover:bg-primary-dark text-white px-8 py-4 rounded-full transition-all duration-300 flex items-center justify-center gap-2 group hover-shine"
+              className="w-full bg-primary-DEFAULT hover:bg-primary-light text-white px-8 py-4 rounded-full transition-all duration-300 flex items-center justify-center gap-2 group hover:shadow-lg hover:shadow-primary-DEFAULT/20"
             >
               Quero Crescer Meu Negócio
               <ArrowRight className="group-hover:translate-x-1 transition-transform" />
