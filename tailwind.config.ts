@@ -29,6 +29,7 @@ export default {
           DEFAULT: "#9b87f5",
           dark: "#1A1F2C",
           light: "#D6BCFA",
+          hover: "#8B5CF6",
         },
         secondary: {
           DEFAULT: "#7E69AB",
@@ -56,6 +57,10 @@ export default {
           "0%": { backgroundPosition: "200% 0" },
           "100%": { backgroundPosition: "-200% 0" },
         },
+        pulse: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.5" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -63,6 +68,7 @@ export default {
         float: "float 6s ease-in-out infinite",
         fadeIn: "fadeIn 0.5s ease-out forwards",
         shine: "shine 8s ease-in-out infinite",
+        pulse: "pulse 2s ease-in-out infinite",
       },
     },
   },
