@@ -3,7 +3,7 @@ import { Instagram, Youtube, Mail, Phone, ArrowRight, MessageCircle } from 'luci
 
 const Footer = () => {
   return (
-    <footer className="relative bg-primary-dark/50 pt-20 pb-10">
+    <footer className="relative bg-primary-DEFAULT/5 dark:bg-primary-dark/50 pt-20 pb-10">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           <div className="space-y-4">
@@ -12,15 +12,12 @@ const Footer = () => {
               alt="Fly Agency Logo" 
               className="h-12"
             />
-            <p className="text-gray-400">
-              Transformamos sua presença digital em resultados reais com estratégias inovadoras de marketing.
-            </p>
             <div className="flex gap-4">
               <a 
                 href="https://www.instagram.com/fly.agencyy/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-primary-DEFAULT transition-colors"
+                className="text-gray-600 dark:text-gray-400 hover:text-primary-DEFAULT transition-colors"
               >
                 <Instagram className="w-6 h-6" />
               </a>
@@ -28,7 +25,7 @@ const Footer = () => {
                 href="https://www.youtube.com/@Fly_agency" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-primary-DEFAULT transition-colors"
+                className="text-gray-600 dark:text-gray-400 hover:text-primary-DEFAULT transition-colors"
               >
                 <Youtube className="w-6 h-6" />
               </a>
@@ -36,13 +33,13 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4">Links Rápidos</h4>
+            <h4 className="text-gray-900 dark:text-white font-semibold mb-4">Links Rápidos</h4>
             <ul className="space-y-2">
               {['Início', 'Sobre', 'Serviços', 'Cases', 'Contato'].map((item) => (
                 <li key={item}>
                   <a 
                     href={`#${item.toLowerCase()}`}
-                    className="text-gray-400 hover:text-primary-DEFAULT transition-colors flex items-center gap-2 group"
+                    className="text-gray-600 dark:text-gray-400 hover:text-primary-DEFAULT transition-colors flex items-center gap-2 group"
                   >
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     {item}
@@ -53,7 +50,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4">Serviços</h4>
+            <h4 className="text-gray-900 dark:text-white font-semibold mb-4">Serviços</h4>
             <ul className="space-y-2">
               {[
                 'Tráfego Pago',
@@ -64,7 +61,7 @@ const Footer = () => {
                 <li key={service}>
                   <a 
                     href="#serviços"
-                    className="text-gray-400 hover:text-primary-DEFAULT transition-colors flex items-center gap-2 group"
+                    className="text-gray-600 dark:text-gray-400 hover:text-primary-DEFAULT transition-colors flex items-center gap-2 group"
                   >
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     {service}
@@ -75,28 +72,28 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4">Contato</h4>
+            <h4 className="text-gray-900 dark:text-white font-semibold mb-4">Contato</h4>
             <div className="space-y-4">
               <a 
-                href="mailto:contato@flyagency.com.br"
-                className="text-gray-400 hover:text-primary-DEFAULT transition-colors flex items-center gap-2"
+                href="mailto:flyy.agc@gmail.com"
+                className="text-gray-600 dark:text-gray-400 hover:text-primary-DEFAULT transition-colors flex items-center gap-2"
               >
                 <Mail className="w-5 h-5" />
-                contato@flyagency.com.br
+                flyy.agc@gmail.com
               </a>
               <a 
-                href="tel:+5500000000000"
-                className="text-gray-400 hover:text-primary-DEFAULT transition-colors flex items-center gap-2"
+                href="tel:+5579998615349"
+                className="text-gray-600 dark:text-gray-400 hover:text-primary-DEFAULT transition-colors flex items-center gap-2"
               >
                 <Phone className="w-5 h-5" />
-                (00) 0000-0000
+                (79) 99861-5349
               </a>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8">
-          <div className="text-center text-gray-400">
+        <div className="border-t border-gray-200 dark:border-white/10 pt-8">
+          <div className="text-center text-gray-600 dark:text-gray-400">
             <p>&copy; {new Date().getFullYear()} Fly Agency. Todos os direitos reservados.</p>
           </div>
         </div>
@@ -104,7 +101,7 @@ const Footer = () => {
 
       {/* WhatsApp Button */}
       <a
-        href="https://wa.me/5500000000000"
+        href="https://wa.link/jgvhdu"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-colors z-50 animate-bounce"
