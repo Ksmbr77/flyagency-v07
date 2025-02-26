@@ -27,9 +27,9 @@ export default {
         foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "#9b87f5",
-          dark: "#1A1F2C",
-          light: "#D6BCFA",
-          hover: "#8B5CF6",
+          dark: "#0D0D0D",
+          light: "#A57BDA",
+          neon: "#7A3B96",
         },
         secondary: {
           DEFAULT: "#7E69AB",
@@ -58,8 +58,8 @@ export default {
           "100%": { backgroundPosition: "-200% 0" },
         },
         pulse: {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0.5" },
+          "0%, 100%": { opacity: "1", transform: "scale(1)" },
+          "50%": { opacity: "0.85", transform: "scale(1.05)" },
         },
       },
       animation: {
