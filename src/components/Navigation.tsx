@@ -2,10 +2,12 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
+import { useTheme } from 'next-themes';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,9 +25,11 @@ const Navigation = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <img 
-              src="/lovable-uploads/67145fa2-5bf6-4117-be93-d48d0e1a722b.png" 
+              src={theme === 'dark' 
+                ? "/lovable-uploads/067f4b4e-c0c4-4d80-82f8-1aae9a5e7570.png"
+                : "/lovable-uploads/67145fa2-5bf6-4117-be93-d48d0e1a722b.png"} 
               alt="Fly Agency Logo" 
-              className="h-16 w-auto" 
+              className="h-20 w-auto" // Aumentei o tamanho do logo
             />
           </div>
 
@@ -35,7 +39,7 @@ const Navigation = () => {
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="text-gray-800 dark:text-white hover:text-primary-DEFAULT transition-colors duration-300"
+                className="text-gray-800 dark:text-white hover:text-primary-DEFAULT dark:hover:text-primary-light transition-colors duration-300"
               >
                 {item}
               </a>
@@ -66,7 +70,7 @@ const Navigation = () => {
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
-                  className="text-gray-800 dark:text-white hover:text-primary-DEFAULT transition-colors duration-300"
+                  className="text-gray-800 dark:text-white hover:text-primary-DEFAULT dark:hover:text-primary-light transition-colors duration-300"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item}
