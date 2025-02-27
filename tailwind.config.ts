@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -28,12 +27,12 @@ export default {
         primary: {
           DEFAULT: "#7100FF",
           dark: "#0D0D0D",
-          light: "#8833FF",
+          light: "#A57BDA",
           neon: "#7100FF",
         },
         secondary: {
-          DEFAULT: "#7E69AB",
-          dark: "#6E59A5",
+          DEFAULT: "#7A3B96",
+          dark: "#0D0D0D",
         },
       },
       keyframes: {
