@@ -1,20 +1,15 @@
 import { Instagram, Youtube, Mail, Phone, ArrowRight, MessageCircle } from 'lucide-react';
-import { useTheme } from 'next-themes';
 
 const Footer = () => {
-  const { theme } = useTheme();
-  
   return (
     <footer className="relative bg-primary-DEFAULT/5 dark:bg-primary-dark/50 pt-20 pb-10">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           <div className="space-y-4">
             <img 
-              src={theme === 'dark' 
-                ? "/lovable-uploads/067f4b4e-c0c4-4d80-82f8-1aae9a5e7570.png"
-                : "/lovable-uploads/67145fa2-5bf6-4117-be93-d48d0e1a722b.png"} 
+              src="/lovable-uploads/6bd99f5e-51de-4017-9443-ff4c6db07f6c.png" 
               alt="Fly Agency Logo" 
-              className="h-16"
+              className="h-12"
             />
             <div className="flex gap-4">
               <a 
