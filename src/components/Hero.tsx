@@ -23,18 +23,18 @@ const Hero = () => {
             BEM-VINDO À FLY AGENCY
           </h4>
           
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-800 dark:text-white leading-tight animate-fade-in [animation-delay:400ms]">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 dark:text-white leading-tight animate-fade-in [animation-delay:400ms]">
             A partir de agora, seu maior problema será ter{' '}
             <span className="bg-gradient-to-r from-[#7100FF] to-[#8833FF] bg-clip-text text-transparent">
               clientes demais
             </span>
           </h1>
           
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto animate-fade-in [animation-delay:600ms]">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto animate-fade-in [animation-delay:600ms]">
             Tenha acesso a estratégias avançadas de marketing digital para escalar seu negócio com tráfego pago, automação e produção de conteúdo profissional.
           </p>
           
-          <div className="flex flex-col md:flex-row gap-4 justify-center items-center animate-fade-in [animation-delay:800ms] pb-8">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in [animation-delay:800ms] pb-8">
             <button 
               onClick={scrollToContact}
               className="purple-gradient hover:opacity-90 text-white px-8 py-4 rounded-full transition-all duration-300 flex items-center gap-2 group hover:shadow-lg hover:shadow-primary-DEFAULT/20 hover-shine transform hover:scale-105"
@@ -44,8 +44,9 @@ const Hero = () => {
             </button>
             <button 
               onClick={scrollToCases}
-              className="text-gray-800 dark:text-white hover:text-primary-DEFAULT transition-colors duration-300 flex items-center gap-2 group">
-              Tenha um diagnóstico exclusivo para o seu negócio em até 30 min
+              className="text-gray-800 dark:text-white hover:text-primary-DEFAULT border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-black/30 px-6 py-3 rounded-full transition-all duration-300 text-sm md:text-base flex items-center gap-2 group hover:border-primary-DEFAULT"
+            >
+              Ver diagnóstico exclusivo
               <ArrowRight className="group-hover:translate-x-1 transition-transform" />
             </button>
           </div>

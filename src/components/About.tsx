@@ -9,12 +9,12 @@ const About = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 animate-fade-in">
-            <h2 className="text-3xl md:text-5xl font-bold">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
               Transformamos sua presença digital em{' '}
               <span className="text-primary-DEFAULT">resultados</span>
             </h2>
             
-            <p className="text-gray-300 text-lg">
+            <p className="text-base sm:text-lg text-gray-300">
               Somos especialistas em marketing digital há 2 anos e somos focados em gerar resultados previsíveis e duradouros para o seu negócio. Nossa abordagem combina estratégia, criatividade e tecnologia.
             </p>
 
@@ -26,10 +26,10 @@ const About = () => {
                 "Atendimento próximo e consultivo"
               ].map((item) => (
                 <div key={item} className="flex items-center gap-3">
-                  <div className="bg-primary-DEFAULT rounded-full p-1">
+                  <div className="bg-primary-DEFAULT rounded-full p-1 flex-shrink-0">
                     <Check className="w-4 h-4 text-white" />
                   </div>
-                  <span className="text-gray-300">{item}</span>
+                  <span className="text-gray-300 text-sm sm:text-base">{item}</span>
                 </div>
               ))}
             </div>

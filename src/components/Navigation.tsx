@@ -25,9 +25,9 @@ const Navigation = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <img 
-              src="/lovable-uploads/6bd99f5e-51de-4017-9443-ff4c6db07f6c.png" 
+              src="/lovable-uploads/e8dda4b2-cc66-4d60-9716-5d5798b15974.png" 
               alt="Fly Agency Logo" 
-              className="h-16 md:h-20" 
+              className="h-20 md:h-24 w-auto" 
             />
           </div>
 

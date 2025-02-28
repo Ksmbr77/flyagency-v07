@@ -12,9 +12,9 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           <div className="space-y-4">
             <img 
-              src="/lovable-uploads/6bd99f5e-51de-4017-9443-ff4c6db07f6c.png" 
+              src="/lovable-uploads/e8dda4b2-cc66-4d60-9716-5d5798b15974.png" 
               alt="Fly Agency Logo" 
-              className="h-16 md:h-20"
+              className="h-20 w-auto"
             />
             <div className="flex gap-4">
               <a 
