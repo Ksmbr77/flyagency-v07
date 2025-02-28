@@ -24,12 +24,15 @@ const About = () => {
                 "Estratégias personalizadas para cada cliente",
                 "Resultados mensuráveis e escaláveis",
                 "Atendimento próximo e consultivo"
-              ].map((item) => (
-                <div key={item} className="flex items-center gap-3">
-                  <div className="bg-primary-DEFAULT rounded-full p-1 flex-shrink-0">
+              ].map((item, index) => (
+                <div 
+                  key={item} 
+                  className="flex items-center gap-3 p-2 rounded-lg transition-all duration-300 hover:bg-primary-DEFAULT/10 group"
+                >
+                  <div className="bg-primary-DEFAULT rounded-full p-1 flex-shrink-0 group-hover:scale-110 transition-transform">
                     <Check className="w-4 h-4 text-white" />
                   </div>
-                  <span className="text-gray-300 text-sm sm:text-base">{item}</span>
+                  <span className="text-gray-300 text-sm sm:text-base group-hover:text-primary-DEFAULT transition-colors">{item}</span>
                 </div>
               ))}
             </div>
