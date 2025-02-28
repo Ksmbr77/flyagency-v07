@@ -15,7 +15,7 @@ const About = () => {
             </h2>
             
             <p className="text-gray-300 text-lg">
-              Somos especialistas em marketing digital focados em gerar resultados mensuráveis para o seu negócio. Nossa abordagem combina estratégia, criatividade e tecnologia.
+              Somos especialistas em marketing digital há 2 anos e somos focados em gerar resultados previsíveis e duradouros para o seu negócio. Nossa abordagem combina estratégia, criatividade e tecnologia.
             </p>
 
             <div className="space-y-4">

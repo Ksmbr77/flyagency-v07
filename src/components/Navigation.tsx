@@ -14,27 +14,45 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToSection = (sectionId: string) => {
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'glass-dark py-4' : 'py-6'}`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <img src="/lovable-uploads/6bd99f5e-51de-4017-9443-ff4c6db07f6c.png" alt="Fly Agency Logo" className="h-12" />
+            <img 
+              src="/lovable-uploads/6bd99f5e-51de-4017-9443-ff4c6db07f6c.png" 
+              alt="Fly Agency Logo" 
+              className="h-16 md:h-20" 
+            />
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            {['Início', 'Serviços', 'Sobre', 'Cases', 'Contato'].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+            {[
+              { name: 'Início', id: 'inicio' },
+              { name: 'Soluções', id: 'serviços' },
+              { name: 'Sobre', id: 'sobre' },
+              { name: 'Cases', id: 'cases' },
+              { name: 'Contato', id: 'contato' }
+            ].map((item) => (
+              <button
+                key={item.name}
+                onClick={() => scrollToSection(item.id)}
                 className="text-white hover:text-primary-DEFAULT transition-colors duration-300"
               >
-                {item}
-              </a>
+                {item.name}
+              </button>
             ))}
-            <button className="bg-primary-DEFAULT hover:bg-primary-dark text-white px-6 py-2 rounded-full transition-all duration-300 hover-shine">
-              Agendar Reunião
+            <button 
+              onClick={() => scrollToSection('contato')}
+              className="bg-primary-DEFAULT hover:bg-primary-light text-white px-6 py-2 rounded-full transition-all duration-300 hover-shine"
+            >
+              Agendar Consultoria Gratuita
             </button>
           </div>
 
@@ -51,18 +69,26 @@ const Navigation = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden mt-4 glass-dark rounded-lg p-4 animate-fade-in">
             <div className="flex flex-col space-y-4">
-              {['Início', 'Serviços', 'Sobre', 'Cases', 'Contato'].map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
+              {[
+                { name: 'Início', id: 'inicio' },
+                { name: 'Soluções', id: 'serviços' },
+                { name: 'Sobre', id: 'sobre' },
+                { name: 'Cases', id: 'cases' },
+                { name: 'Contato', id: 'contato' }
+              ].map((item) => (
+                <button
+                  key={item.name}
+                  onClick={() => scrollToSection(item.id)}
                   className="text-white hover:text-primary-DEFAULT transition-colors duration-300"
-                  onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  {item}
-                </a>
+                  {item.name}
+                </button>
               ))}
-              <button className="bg-primary-DEFAULT hover:bg-primary-dark text-white px-6 py-2 rounded-full transition-all duration-300 w-full hover-shine">
-                Agendar Reunião
+              <button 
+                onClick={() => scrollToSection('contato')}
+                className="bg-primary-DEFAULT hover:bg-primary-light text-white px-6 py-2 rounded-full transition-all duration-300 w-full hover-shine"
+              >
+                Agendar Consultoria Gratuita
               </button>
             </div>
           </div>

@@ -54,7 +54,7 @@ const Cases = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               </div>
               
-              <div className="flex gap-1 text-primary-DEFAULT mb-4">
+              <div className="flex gap-1 text-[#FFD700] mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-5 h-5 fill-current" />
                 ))}

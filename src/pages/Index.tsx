@@ -31,6 +31,7 @@ const Index = () => {
       <button
         onClick={toggleTheme}
         className="fixed top-24 right-6 z-50 bg-white dark:bg-primary-dark/50 p-3 rounded-full shadow-lg hover:bg-gray-100 dark:hover:bg-primary-dark transition-colors"
+        aria-label="Toggle theme"
       >
         {theme === 'dark' ? (
           <Sun className="w-6 h-6 text-yellow-500" />

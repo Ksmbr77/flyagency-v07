@@ -1,6 +1,11 @@
+
 import { Instagram, Youtube, Mail, Phone, ArrowRight, MessageCircle } from 'lucide-react';
 
 const Footer = () => {
+  const scrollToSection = (sectionId: string) => {
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <footer className="relative bg-primary-DEFAULT/5 dark:bg-primary-dark/50 pt-20 pb-10">
       <div className="container mx-auto px-4">
@@ -9,7 +14,7 @@ const Footer = () => {
             <img 
               src="/lovable-uploads/6bd99f5e-51de-4017-9443-ff4c6db07f6c.png" 
               alt="Fly Agency Logo" 
-              className="h-12"
+              className="h-16 md:h-20"
             />
             <div className="flex gap-4">
               <a 
@@ -34,15 +39,21 @@ const Footer = () => {
           <div>
             <h4 className="text-gray-900 dark:text-white font-semibold mb-4">Links Rápidos</h4>
             <ul className="space-y-2">
-              {['Início', 'Sobre', 'Serviços', 'Cases', 'Contato'].map((item) => (
-                <li key={item}>
-                  <a 
-                    href={`#${item.toLowerCase()}`}
+              {[
+                { name: 'Início', id: 'inicio' },
+                { name: 'Sobre', id: 'sobre' },
+                { name: 'Soluções', id: 'serviços' },
+                { name: 'Cases', id: 'cases' },
+                { name: 'Contato', id: 'contato' }
+              ].map((item) => (
+                <li key={item.name}>
+                  <button 
+                    onClick={() => scrollToSection(item.id)}
                     className="text-gray-600 dark:text-gray-400 hover:text-primary-DEFAULT transition-colors flex items-center gap-2 group"
                   >
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    {item}
-                  </a>
+                    {item.name}
+                  </button>
                 </li>
               ))}
             </ul>
@@ -58,13 +69,13 @@ const Footer = () => {
                 'Marketing Estratégico'
               ].map((service) => (
                 <li key={service}>
-                  <a 
-                    href="#serviços"
+                  <button 
+                    onClick={() => scrollToSection('serviços')}
                     className="text-gray-600 dark:text-gray-400 hover:text-primary-DEFAULT transition-colors flex items-center gap-2 group"
                   >
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     {service}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
