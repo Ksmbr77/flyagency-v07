@@ -100,6 +100,36 @@
       @apply opacity-20;
     }
   }
+  
+  .purple-text-effect {
+    @apply relative inline-block;
+  }
+  
+  .purple-text-effect::after {
+    content: '';
+    @apply absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-[#7A3B96] to-[#8833FF] transition-all duration-300;
+  }
+  
+  .purple-text-effect:hover::after {
+    @apply w-full;
+  }
+  
+  .purple-glow {
+    @apply relative overflow-hidden;
+  }
+  
+  .purple-glow::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-[#7A3B96]/0 to-[#8833FF]/0 opacity-0 transition-opacity duration-500;
+  }
+  
+  .purple-glow:hover::before {
+    @apply opacity-20;
+  }
+  
+  .highlight-gradient {
+    @apply bg-gradient-to-r from-[#7A3B96] to-[#8833FF] bg-clip-text text-transparent;
+  }
 }
 
 .animate-fade-in {

@@ -27,12 +27,15 @@ const About = () => {
               ].map((item, index) => (
                 <div 
                   key={item} 
-                  className="flex items-center gap-3 p-2 rounded-lg transition-all duration-300 hover:bg-primary-DEFAULT/10 group"
+                  className="flex items-center gap-3 p-2 rounded-lg transition-all duration-300 hover:bg-[#7A3B96]/10 group relative overflow-hidden"
+                  style={{ animationDelay: `${index * 150}ms` }}
                 >
-                  <div className="bg-primary-DEFAULT rounded-full p-1 flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#7A3B96]/0 to-[#7A3B96]/0 group-hover:from-[#7A3B96]/5 group-hover:to-[#7A3B96]/10 transition-all duration-500 rounded-lg"></div>
+                  <div className="bg-gradient-to-r from-[#7A3B96] to-[#8833FF] rounded-full p-1 flex-shrink-0 group-hover:scale-110 transition-transform relative z-10 shadow-lg shadow-[#7A3B96]/20 group-hover:shadow-[#7A3B96]/40">
                     <Check className="w-4 h-4 text-white" />
                   </div>
-                  <span className="text-gray-300 text-sm sm:text-base group-hover:text-primary-DEFAULT transition-colors">{item}</span>
+                  <span className="text-gray-300 text-sm sm:text-base group-hover:text-[#7A3B96] transition-colors relative z-10 font-medium">{item}</span>
+                  <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-[#7A3B96] to-[#8833FF] group-hover:w-full transition-all duration-500"></div>
                 </div>
               ))}
             </div>
@@ -46,7 +49,7 @@ const About = () => {
                 className="w-full rounded-lg"
               />
             </div>
-            <div className="absolute inset-0 bg-primary-DEFAULT/20 blur-3xl z-10" />
+            <div className="absolute inset-0 bg-[#7A3B96]/20 blur-3xl z-10" />
           </div>
         </div>
       </div>
