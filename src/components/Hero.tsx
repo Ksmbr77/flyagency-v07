@@ -23,7 +23,7 @@ const Hero = () => {
             BEM-VINDO À FLY AGENCY
           </h4>
           
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 dark:text-white leading-tight animate-fade-in [animation-delay:400ms] max-w-3xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 dark:text-white leading-tight animate-fade-in [animation-delay:400ms] w-full tracking-normal sm:tracking-wide md:tracking-wide lg:tracking-wide">
             A partir de agora, seu maior problema será<br />
             <span className="bg-gradient-to-r from-[#7100FF] to-[#8833FF] bg-clip-text text-transparent">
               ter clientes demais
@@ -47,10 +47,8 @@ const Hero = () => {
               onClick={scrollToCases}
               className="text-gray-800 dark:text-white hover:text-primary-DEFAULT border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-black/30 px-6 py-3 rounded-full transition-all duration-300 text-sm md:text-base flex items-center gap-2 group hover:border-primary-DEFAULT"
             >
-              <span className="bg-gradient-to-r from-[#7A3B96] to-[#8833FF] bg-clip-text text-transparent font-medium">
-                Tenha um diagnóstico exclusivo
-              </span>
-              <ArrowRight className="group-hover:translate-x-1 transition-transform text-[#7A3B96]" />
+              Tenha um diagnóstico exclusivo
+              <ArrowRight className="group-hover:translate-x-1 transition-transform text-primary-DEFAULT" />
             </button>
           </div>
         </div>
