@@ -26,7 +26,7 @@ const services = [
 
 const Services = () => {
   return (
-    <section id="serviços" className="pt-12 pb-20 relative overflow-hidden">
+    <section id="serviços" className="pt-4 pb-20 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-black via-primary-dark/20 to-black" />
       
       <div className="container mx-auto px-4 relative z-10">
