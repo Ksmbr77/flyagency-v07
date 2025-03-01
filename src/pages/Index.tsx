@@ -1,13 +1,18 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
-import Services from '@/components/Services';
-import About from '@/components/About';
-import Cases from '@/components/Cases';
-import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
 import { Moon, Sun } from 'lucide-react';
+
+// Lazy load components that are not immediately visible
+const Services = lazy(() => import('@/components/Services'));
+const About = lazy(() => import('@/components/About'));
+const Cases = lazy(() => import('@/components/Cases'));
+const Contact = lazy(() => import('@/components/Contact'));
+const Footer = lazy(() => import('@/components/Footer'));
+
+// Loading fallback
+const LoadingFallback = () => <div className="min-h-[200px] flex items-center justify-center"><span className="text-primary-DEFAULT">Carregando...</span></div>;
 
 const Index = () => {
   const [theme, setTheme] = useState('dark');
@@ -31,20 +36,30 @@ const Index = () => {
       <button
         onClick={toggleTheme}
         className="fixed top-24 right-6 z-50 bg-white dark:bg-primary-dark/50 p-3 rounded-full shadow-lg hover:bg-gray-100 dark:hover:bg-primary-dark transition-colors"
-        aria-label="Toggle theme"
+        aria-label={theme === 'dark' ? "Mudar para tema claro" : "Mudar para tema escuro"}
       >
         {theme === 'dark' ? (
-          <Sun className="w-6 h-6 text-yellow-500" />
+          <Sun className="w-5 h-5 text-yellow-500" />
         ) : (
-          <Moon className="w-6 h-6 text-primary-DEFAULT" />
+          <Moon className="w-5 h-5 text-primary-DEFAULT" />
         )}
       </button>
       <Hero />
-      <Services />
-      <About />
-      <Cases />
-      <Contact />
-      <Footer />
+      <Suspense fallback={<LoadingFallback />}>
+        <Services />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
+        <About />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
+        <Cases />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
+        <Contact />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
+        <Footer />
+      </Suspense>
     </main>
   );
 };

@@ -10,7 +10,7 @@ const Navigation = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -20,19 +20,20 @@ const Navigation = () => {
   };
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'glass-dark py-4' : 'py-6'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'glass-dark py-3' : 'py-5'}`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <img 
               src="/lovable-uploads/e8dda4b2-cc66-4d60-9716-5d5798b15974.png" 
               alt="Fly Agency Logo" 
-              className="h-20 md:h-24 w-auto" 
+              className="h-16 md:h-20 w-auto" 
+              loading="lazy"
             />
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
             {[
               { name: 'Início', id: 'inicio' },
               { name: 'Soluções', id: 'serviços' },
@@ -50,7 +51,7 @@ const Navigation = () => {
             ))}
             <button 
               onClick={() => scrollToSection('contato')}
-              className="bg-primary-DEFAULT hover:bg-primary-light text-white px-6 py-2 rounded-full transition-all duration-300 hover-shine"
+              className="bg-primary-DEFAULT hover:bg-primary-light text-white px-5 py-2 rounded-full transition-all duration-300 hover-shine will-change-transform"
             >
               Agendar Consultoria Gratuita
             </button>
@@ -60,6 +61,7 @@ const Navigation = () => {
           <button
             className="md:hidden text-white"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -67,7 +69,7 @@ const Navigation = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 glass-dark rounded-lg p-4 animate-fade-in">
+          <div className="md:hidden mt-4 glass-dark rounded-lg p-4 animate-fade-in will-change-transform">
             <div className="flex flex-col space-y-4">
               {[
                 { name: 'Início', id: 'inicio' },
@@ -86,7 +88,7 @@ const Navigation = () => {
               ))}
               <button 
                 onClick={() => scrollToSection('contato')}
-                className="bg-primary-DEFAULT hover:bg-primary-light text-white px-6 py-2 rounded-full transition-all duration-300 w-full hover-shine"
+                className="bg-primary-DEFAULT hover:bg-primary-light text-white px-6 py-2 rounded-full transition-all duration-300 w-full hover-shine will-change-transform"
               >
                 Agendar Consultoria Gratuita
               </button>
