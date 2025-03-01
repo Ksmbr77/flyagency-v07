@@ -30,12 +30,12 @@ const Hero = () => {
             </span>
           </h1>
           
-          <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto animate-fade-in [animation-delay:600ms] leading-snug">
-            Tenha acesso a estratégias avançadas de marketing<br />
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto animate-fade-in [animation-delay:600ms] leading-snug md:leading-normal sm:px-6 px-4">
+            Tenha acesso a estratégias avançadas de marketing<br className="hidden md:block" />
             para escalar seu negócio com tráfego pago, automação e conteúdo profissional.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in [animation-delay:800ms] pb-8">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in [animation-delay:800ms] pb-4 sm:pb-6">
             <button 
               onClick={scrollToContact}
               className="purple-gradient hover:opacity-90 text-white px-8 py-4 rounded-full transition-all duration-300 flex items-center gap-2 group hover:shadow-lg hover:shadow-primary-DEFAULT/20 hover-shine transform hover:scale-105"
