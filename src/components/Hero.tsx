@@ -19,7 +19,7 @@ const Hero = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center space-y-5">
-          <h4 className="text-primary-DEFAULT font-medium tracking-wide animate-fade-in [animation-delay:200ms] mt-10">
+          <h4 className="text-primary-DEFAULT font-medium tracking-wide animate-fade-in [animation-delay:200ms] mt-16 md:mt-10">
             BEM-VINDO À FLY AGENCY
           </h4>
           
@@ -35,17 +35,17 @@ const Hero = () => {
             para escalar seu negócio com tráfego pago, automação e conteúdo profissional.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in [animation-delay:800ms] pb-4 mt-6">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in [animation-delay:800ms] pb-0 mt-6 mb-2">
             <button 
               onClick={scrollToContact}
-              className="purple-gradient hover:opacity-90 text-white px-8 py-4 rounded-full transition-all duration-300 flex items-center gap-2 group hover:shadow-lg hover:shadow-primary-DEFAULT/20 hover-shine transform hover:scale-105"
+              className="purple-gradient hover:opacity-90 text-white px-8 py-4 rounded-full transition-all duration-300 flex items-center gap-2 group hover:shadow-lg hover:shadow-primary-DEFAULT/20 hover-shine transform hover:scale-105 w-full sm:w-auto text-center justify-center"
             >
               Agendar Consultoria Gratuita
               <ArrowRight className="group-hover:translate-x-1 transition-transform" />
             </button>
             <button 
               onClick={scrollToCases}
-              className="text-gray-800 dark:text-white hover:text-primary-DEFAULT border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-black/30 px-6 py-3 rounded-full transition-all duration-300 text-sm md:text-base flex items-center gap-2 group hover:border-primary-DEFAULT"
+              className="text-gray-800 dark:text-white hover:text-primary-DEFAULT border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-black/30 px-6 py-3 rounded-full transition-all duration-300 text-sm md:text-base flex items-center gap-2 group hover:border-primary-DEFAULT w-full sm:w-auto text-center justify-center"
             >
               Tenha um diagnóstico exclusivo
               <ArrowRight className="group-hover:translate-x-1 transition-transform text-primary-DEFAULT" />

@@ -38,9 +38,13 @@ const Navigation = () => {
         <div className="flex justify-between items-center">
           <a 
             href="#inicio" 
-            className="text-2xl font-bold text-gray-800 dark:text-white hover:text-primary-DEFAULT transition-colors"
+            className="flex items-center gap-2 text-2xl font-bold text-gray-800 dark:text-white hover:text-primary-DEFAULT transition-colors"
           >
-            Fly<span className="text-primary-DEFAULT">Agency</span>
+            <img 
+              src="/lovable-uploads/eff371ac-0f72-4013-86db-c5cc875d4ccd.png" 
+              alt="Fly Agency Logo" 
+              className="h-12 w-auto"
+            />
           </a>
           
           {/* Desktop Navigation */}
