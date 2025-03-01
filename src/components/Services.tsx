@@ -30,8 +30,8 @@ const Services = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-black via-primary-dark/20 to-black" />
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-12 animate-fade-in will-change-transform">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+        <div className="text-center mb-16 animate-fade-in">
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">
             Nossas <span className="text-primary-DEFAULT">Soluções</span>
           </h2>
           <p className="text-gray-300 max-w-2xl mx-auto">
@@ -39,17 +39,17 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
             <div
               key={service.title}
-              className="glass p-6 md:p-8 rounded-2xl hover:translate-y-[-4px] transition-all duration-300 animate-fade-in group cursor-pointer will-change-transform"
-              style={{ animationDelay: `${index * 150}ms` }}
+              className="glass p-8 rounded-2xl hover:translate-y-[-4px] transition-all duration-300 animate-fade-in group cursor-pointer"
+              style={{ animationDelay: `${index * 200}ms` }}
             >
-              <div className="text-[#7100FF] mb-5 group-hover:scale-110 transition-transform">
+              <div className="text-[#7100FF] mb-6 group-hover:scale-110 transition-transform">
                 {service.icon}
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-white">{service.title}</h3>
+              <h3 className="text-xl font-semibold mb-4 text-white">{service.title}</h3>
               <p className="text-gray-300">{service.description}</p>
             </div>
           ))}
