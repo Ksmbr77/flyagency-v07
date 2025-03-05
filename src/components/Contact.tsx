@@ -1,7 +1,55 @@
 
 import { ArrowRight } from 'lucide-react';
+import { useState } from 'react';
+import { useToast } from "@/components/ui/use-toast";
 
 const Contact = () => {
+  const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Check if all required fields are filled
+    if (!formData.name || !formData.email || !formData.phone) {
+      toast({
+        title: "Erro no formulário",
+        description: "Por favor, preencha todos os campos obrigatórios.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    // Redirect to WhatsApp with form data
+    const message = `Olá, sou ${formData.name}. ${formData.message ? formData.message : 'Gostaria de agendar uma consultoria gratuita.'}`;
+    window.open(`https://wa.link/44ujfg`, '_blank');
+    
+    // Reset form
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      message: ''
+    });
+    
+    toast({
+      title: "Mensagem enviada!",
+      description: "Em breve entraremos em contato."
+    });
+  };
+
   return (
     <section id="contato" className="py-16 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-black via-primary-dark/20 to-black" />
@@ -17,7 +65,7 @@ const Contact = () => {
             </p>
           </div>
 
-          <form className="space-y-6 animate-fade-in [animation-delay:200ms]">
+          <form onSubmit={handleSubmit} className="space-y-6 animate-fade-in [animation-delay:200ms]">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
@@ -26,8 +74,11 @@ const Contact = () => {
                 <input
                   type="text"
                   id="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   className="w-full px-4 py-3 rounded-lg bg-black/30 border border-primary-DEFAULT/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT focus:border-transparent transition-all duration-300"
                   placeholder="Seu nome completo"
+                  required
                 />
               </div>
               <div>
@@ -37,8 +88,11 @@ const Contact = () => {
                 <input
                   type="email"
                   id="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   className="w-full px-4 py-3 rounded-lg bg-black/30 border border-primary-DEFAULT/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT focus:border-transparent transition-all duration-300"
                   placeholder="Seu e-mail profissional"
+                  required
                 />
               </div>
             </div>
@@ -50,8 +104,11 @@ const Contact = () => {
               <input
                 type="tel"
                 id="phone"
+                value={formData.phone}
+                onChange={handleChange}
                 className="w-full px-4 py-3 rounded-lg bg-black/30 border border-primary-DEFAULT/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT focus:border-transparent transition-all duration-300"
                 placeholder="(00) 00000-0000"
+                required
               />
             </div>
 
@@ -62,6 +119,8 @@ const Contact = () => {
               <textarea
                 id="message"
                 rows={4}
+                value={formData.message}
+                onChange={handleChange}
                 className="w-full px-4 py-3 rounded-lg bg-black/30 border border-primary-DEFAULT/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT focus:border-transparent transition-all duration-300 resize-none"
                 placeholder="Como podemos ajudar seu negócio?"
               />

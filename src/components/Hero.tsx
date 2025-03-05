@@ -31,7 +31,7 @@ const Hero = () => {
           </h1>
           
           <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto animate-fade-in [animation-delay:600ms] leading-snug md:leading-normal sm:px-6 px-4">
-            Tenha acesso a estratégias avançadas de marketing<br className="hidden md:block" />
+            Tenha acesso a estratégias avançadas de marketing<span className="xs:hidden sm:inline"> </span><br className="hidden md:block" />
             para escalar seu negócio com tráfego pago, automação e conteúdo profissional.
           </p>
           
@@ -44,7 +44,7 @@ const Hero = () => {
               <ArrowRight className="group-hover:translate-x-1 transition-transform" />
             </button>
             <button 
-              onClick={scrollToCases}
+              onClick={() => window.location.href = '/diagnostico'}
               className="text-gray-800 dark:text-white hover:text-primary-DEFAULT border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-black/30 px-6 py-3 rounded-full transition-all duration-300 text-sm md:text-base flex items-center gap-2 group hover:border-primary-DEFAULT"
             >
               Tenha um diagnóstico exclusivo
