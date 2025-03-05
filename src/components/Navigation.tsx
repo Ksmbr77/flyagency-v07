@@ -20,7 +20,7 @@ const Navigation = () => {
   };
 
   const openDiagnosticForm = () => {
-    window.location.href = '/diagnostico';
+    window.location.href = 'https://form.respondi.app/eODFSoBX';
     setIsMobileMenuOpen(false);
   };
 

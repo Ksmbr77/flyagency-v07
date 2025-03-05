@@ -6,6 +6,10 @@ const Hero = () => {
     document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const openDiagnosticForm = () => {
+    window.location.href = 'https://form.respondi.app/eODFSoBX';
+  };
+
   return (
     <div id="inicio" className="min-h-[90vh] flex items-center relative overflow-hidden bg-gradient-to-b from-white via-primary-light/5 to-white dark:from-black dark:to-primary-dark/20">
       <div className="absolute inset-0">
@@ -40,7 +44,7 @@ const Hero = () => {
               <ArrowRight className="group-hover:translate-x-1 transition-transform" />
             </button>
             <button 
-              onClick={() => window.location.href = '/diagnostico'}
+              onClick={openDiagnosticForm}
               className="text-gray-800 dark:text-white hover:text-primary-DEFAULT border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-black/30 px-6 py-3 rounded-full transition-all duration-300 text-sm md:text-base flex items-center gap-2 group hover:border-primary-DEFAULT"
             >
               Tenha um diagnóstico exclusivo
