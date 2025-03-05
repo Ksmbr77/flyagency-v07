@@ -20,7 +20,7 @@ const Navigation = () => {
   };
 
   const openDiagnosticForm = () => {
-    window.open('https://form.respondi.app/eODFSoBX', '_blank', 'noopener,noreferrer');
+    window.location.href = '/diagnostico';
     setIsMobileMenuOpen(false);
   };
 
@@ -54,7 +54,7 @@ const Navigation = () => {
               </button>
             ))}
             <button 
-              onClick={openDiagnosticForm}
+              onClick={() => scrollToSection('contato')}
               className="bg-primary-DEFAULT hover:bg-primary-light text-white px-6 py-2 rounded-full transition-all duration-300 hover-shine"
             >
               Agendar Consultoria Gratuita
@@ -90,7 +90,7 @@ const Navigation = () => {
                 </button>
               ))}
               <button 
-                onClick={openDiagnosticForm}
+                onClick={() => scrollToSection('contato')}
                 className="bg-primary-DEFAULT hover:bg-primary-light text-white px-6 py-2 rounded-full transition-all duration-300 w-full hover-shine"
               >
                 Agendar Consultoria Gratuita

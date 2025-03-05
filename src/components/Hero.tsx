@@ -6,10 +6,6 @@ const Hero = () => {
     document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const scrollToCases = () => {
-    document.getElementById('cases')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <div id="inicio" className="min-h-[90vh] flex items-center relative overflow-hidden bg-gradient-to-b from-white via-primary-light/5 to-white dark:from-black dark:to-primary-dark/20">
       <div className="absolute inset-0">
@@ -31,7 +27,7 @@ const Hero = () => {
           </h1>
           
           <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto animate-fade-in [animation-delay:600ms] leading-snug md:leading-normal sm:px-6 px-4">
-            Tenha acesso a estratégias avançadas de marketing<span className="xs:hidden sm:inline"> </span><br className="hidden md:block" />
+            Tenha acesso a estratégias avançadas de marketing <span className="xs:hidden sm:inline"> </span><br className="hidden md:block" />
             para escalar seu negócio com tráfego pago, automação e conteúdo profissional.
           </p>
           
