@@ -117,13 +117,27 @@ const Diagnostico = () => {
     
     // Build message with diagnosis results
     let message = `Diagnóstico completo para ${contact.name} da empresa ${contact.business}:\n\n`;
+    message += `Email: ${contact.email}\n`;
+    message += `Telefone: ${contact.phone}\n\n`;
+    message += `RESULTADOS DO DIAGNÓSTICO:\n`;
+    
     Object.keys(answers).forEach((questionId) => {
       const question = questions.find(q => q.id === parseInt(questionId));
       message += `${question?.question}: ${answers[parseInt(questionId)]}\n`;
     });
     
+    // Format message for WhatsApp (URL encode)
+    const encodedMessage = encodeURIComponent(message);
+    
     // Redirect to WhatsApp with diagnosis data
     window.open(`https://wa.link/44ujfg`, '_blank');
+    
+    // Store data in localStorage for future reference
+    localStorage.setItem('diagnosticData', JSON.stringify({
+      contact,
+      answers,
+      date: new Date().toISOString()
+    }));
     
     toast({
       title: "Diagnóstico enviado!",
@@ -132,33 +146,33 @@ const Diagnostico = () => {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-white to-gray-100 dark:from-black dark:to-primary-dark/20 text-gray-900 dark:text-white transition-colors duration-300">
+    <main className="min-h-screen bg-gradient-to-b from-black via-primary-dark/80 to-black text-white transition-colors duration-300">
       <Navigation />
       
-      <div className="container mx-auto px-4 py-20 mt-10">
-        <div className="max-w-3xl mx-auto neo-blur rounded-2xl p-8 md:p-12">
+      <div className="container mx-auto px-4 py-16 md:py-20">
+        <div className="max-w-3xl mx-auto neo-blur rounded-2xl border border-primary-DEFAULT/30 shadow-xl shadow-primary-DEFAULT/10 p-8 md:p-12">
           {!showResult ? (
             <>
               <div className="mb-8">
                 <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-2xl md:text-3xl font-bold">
-                    Diagnóstico <span className="text-primary-DEFAULT">Digital</span>
+                  <h2 className="text-2xl md:text-3xl font-bold text-white">
+                    Diagnóstico <span className="bg-gradient-to-r from-primary-light to-primary-neon bg-clip-text text-transparent">Digital</span>
                   </h2>
-                  <div className="text-sm text-gray-500 dark:text-gray-400">
+                  <div className="text-sm text-gray-300">
                     Pergunta {currentQuestion + 1} de {questions.length}
                   </div>
                 </div>
                 
-                <div className="w-full bg-gray-200 dark:bg-gray-700 h-2 rounded-full">
+                <div className="w-full bg-gray-700 h-2 rounded-full">
                   <div 
-                    className="bg-primary-DEFAULT h-2 rounded-full transition-all duration-500"
+                    className="bg-gradient-to-r from-primary-DEFAULT to-primary-light h-2 rounded-full transition-all duration-500"
                     style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
                   />
                 </div>
               </div>
               
               <div className="mb-10">
-                <h3 className="text-xl md:text-2xl font-semibold mb-6">
+                <h3 className="text-xl md:text-2xl font-semibold mb-6 text-white">
                   {questions[currentQuestion].question}
                 </h3>
                 
@@ -167,10 +181,10 @@ const Diagnostico = () => {
                     <button
                       key={option}
                       onClick={() => handleAnswer(option)}
-                      className={`w-full text-left p-4 rounded-lg border border-gray-300 dark:border-gray-700 hover:border-primary-DEFAULT dark:hover:border-primary-DEFAULT transition-all duration-300 ${
+                      className={`w-full text-left p-4 rounded-lg border hover:shadow-md hover:shadow-primary-DEFAULT/20 transition-all duration-300 will-change-transform ${
                         answers[questions[currentQuestion].id] === option
-                          ? 'bg-primary-DEFAULT/10 border-primary-DEFAULT'
-                          : ''
+                          ? 'bg-primary-DEFAULT/20 border-primary-DEFAULT text-white'
+                          : 'bg-black/40 border-gray-700 text-gray-200 hover:border-primary-DEFAULT/50 hover:-translate-y-1'
                       }`}
                     >
                       {option}
@@ -183,7 +197,7 @@ const Diagnostico = () => {
                 {currentQuestion > 0 ? (
                   <button
                     onClick={handlePrevious}
-                    className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-primary-DEFAULT transition-colors"
+                    className="flex items-center gap-2 text-gray-300 hover:text-primary-light transition-colors"
                   >
                     <ArrowLeft className="w-4 h-4" />
                     Anterior
@@ -192,7 +206,7 @@ const Diagnostico = () => {
                   <div></div>
                 )}
                 
-                <div className="text-sm text-gray-500 dark:text-gray-400">
+                <div className="text-sm text-gray-300">
                   {Object.keys(answers).length} de {questions.length} respondidas
                 </div>
               </div>
@@ -201,19 +215,21 @@ const Diagnostico = () => {
             <>
               <div className="text-center mb-10">
                 <div className="flex justify-center mb-6">
-                  <CheckCircle className="w-16 h-16 text-green-500" />
+                  <div className="bg-gradient-to-r from-primary-DEFAULT to-primary-light p-3 rounded-full">
+                    <CheckCircle className="w-12 h-12 text-white" />
+                  </div>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-4">
-                  Diagnóstico <span className="text-primary-DEFAULT">Concluído!</span>
+                <h2 className="text-2xl md:text-3xl font-bold mb-4 text-white">
+                  Diagnóstico <span className="bg-gradient-to-r from-primary-light to-primary-neon bg-clip-text text-transparent">Concluído!</span>
                 </h2>
-                <p className="text-gray-600 dark:text-gray-300">
+                <p className="text-gray-300">
                   Preencha seus dados para receber uma análise personalizada baseada em suas respostas.
                 </p>
               </div>
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">
+                  <label htmlFor="name" className="block text-sm font-medium mb-2 text-gray-200">
                     Nome completo
                   </label>
                   <input
@@ -221,14 +237,14 @@ const Diagnostico = () => {
                     id="name"
                     value={contact.name}
                     onChange={handleContactChange}
-                    className="w-full px-4 py-3 rounded-lg bg-white dark:bg-black/30 border border-gray-300 dark:border-primary-DEFAULT/30 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-3 rounded-lg bg-black/50 border border-primary-DEFAULT/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT focus:border-transparent transition-all duration-300"
                     placeholder="Seu nome completo"
                     required
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="business" className="block text-sm font-medium mb-2">
+                  <label htmlFor="business" className="block text-sm font-medium mb-2 text-gray-200">
                     Nome da empresa
                   </label>
                   <input
@@ -236,7 +252,7 @@ const Diagnostico = () => {
                     id="business"
                     value={contact.business}
                     onChange={handleContactChange}
-                    className="w-full px-4 py-3 rounded-lg bg-white dark:bg-black/30 border border-gray-300 dark:border-primary-DEFAULT/30 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-3 rounded-lg bg-black/50 border border-primary-DEFAULT/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT focus:border-transparent transition-all duration-300"
                     placeholder="Nome da sua empresa"
                     required
                   />
@@ -244,7 +260,7 @@ const Diagnostico = () => {
                 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium mb-2 text-gray-200">
                       E-mail
                     </label>
                     <input
@@ -252,14 +268,14 @@ const Diagnostico = () => {
                       id="email"
                       value={contact.email}
                       onChange={handleContactChange}
-                      className="w-full px-4 py-3 rounded-lg bg-white dark:bg-black/30 border border-gray-300 dark:border-primary-DEFAULT/30 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT focus:border-transparent transition-all duration-300"
+                      className="w-full px-4 py-3 rounded-lg bg-black/50 border border-primary-DEFAULT/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT focus:border-transparent transition-all duration-300"
                       placeholder="Seu e-mail profissional"
                       required
                     />
                   </div>
                   
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium mb-2">
+                    <label htmlFor="phone" className="block text-sm font-medium mb-2 text-gray-200">
                       Telefone
                     </label>
                     <input
@@ -267,7 +283,7 @@ const Diagnostico = () => {
                       id="phone"
                       value={contact.phone}
                       onChange={handleContactChange}
-                      className="w-full px-4 py-3 rounded-lg bg-white dark:bg-black/30 border border-gray-300 dark:border-primary-DEFAULT/30 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT focus:border-transparent transition-all duration-300"
+                      className="w-full px-4 py-3 rounded-lg bg-black/50 border border-primary-DEFAULT/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT focus:border-transparent transition-all duration-300"
                       placeholder="(00) 00000-0000"
                       required
                     />
@@ -276,7 +292,7 @@ const Diagnostico = () => {
                 
                 <button
                   type="submit"
-                  className="w-full bg-primary-DEFAULT hover:bg-primary-light text-white px-8 py-4 rounded-full transition-all duration-300 flex items-center justify-center gap-2 group hover:shadow-lg hover:shadow-primary-DEFAULT/20"
+                  className="w-full bg-gradient-to-r from-primary-DEFAULT to-primary-light hover:from-primary-light hover:to-primary-DEFAULT text-white px-8 py-4 rounded-full transition-all duration-300 flex items-center justify-center gap-2 group hover:shadow-lg hover:shadow-primary-DEFAULT/30 transform hover:-translate-y-1 will-change-transform"
                 >
                   Receber Análise Personalizada
                   <ArrowRight className="group-hover:translate-x-1 transition-transform" />

@@ -32,8 +32,16 @@ const Contact = () => {
       return;
     }
     
+    // Build message for WhatsApp
+    const message = `Olá, sou ${formData.name}. Email: ${formData.email}. Telefone: ${formData.phone}. ${formData.message ? '\nMensagem: ' + formData.message : 'Gostaria de agendar uma consultoria gratuita.'}`;
+    
+    // Store data in localStorage for future reference
+    localStorage.setItem('contactData', JSON.stringify({
+      ...formData,
+      date: new Date().toISOString()
+    }));
+    
     // Redirect to WhatsApp with form data
-    const message = `Olá, sou ${formData.name}. ${formData.message ? formData.message : 'Gostaria de agendar uma consultoria gratuita.'}`;
     window.open(`https://wa.link/44ujfg`, '_blank');
     
     // Reset form
