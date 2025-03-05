@@ -32,16 +32,13 @@ const Contact = () => {
       return;
     }
     
-    // Build message for WhatsApp
-    const message = `Olá, sou ${formData.name}. Email: ${formData.email}. Telefone: ${formData.phone}. ${formData.message ? '\nMensagem: ' + formData.message : 'Gostaria de agendar uma consultoria gratuita.'}`;
-    
     // Store data in localStorage for future reference
     localStorage.setItem('contactData', JSON.stringify({
       ...formData,
       date: new Date().toISOString()
     }));
     
-    // Redirect to WhatsApp with form data
+    // Redirect to WhatsApp
     window.open(`https://wa.link/44ujfg`, '_blank');
     
     // Reset form
@@ -58,6 +55,10 @@ const Contact = () => {
     });
   };
 
+  const openDiagnosticForm = () => {
+    window.open('https://form.respondi.app/eODFSoBX', '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <section id="contato" className="py-16 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-black via-primary-dark/20 to-black" />
@@ -68,9 +69,17 @@ const Contact = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Que tal receber um <span className="text-primary-DEFAULT">diagnóstico gratuito</span> do seu negócio?
             </h2>
-            <p className="text-gray-300">
+            <p className="text-gray-300 mb-6">
               Preencha o formulário abaixo e nossa equipe entrará em contato em até 24 horas
             </p>
+            <button
+              onClick={openDiagnosticForm}
+              className="bg-primary-DEFAULT hover:bg-primary-light text-white px-8 py-3 rounded-full transition-all duration-300 flex items-center justify-center gap-2 group mx-auto hover:shadow-lg hover:shadow-primary-DEFAULT/20 mb-6"
+            >
+              Fazer Diagnóstico Digital Completo
+              <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+            </button>
+            <p className="text-gray-400 text-sm">Ou entre em contato diretamente:</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6 animate-fade-in [animation-delay:200ms]">

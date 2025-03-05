@@ -19,6 +19,11 @@ const Navigation = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const openDiagnosticForm = () => {
+    window.open('https://form.respondi.app/eODFSoBX', '_blank', 'noopener,noreferrer');
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'glass-dark py-4' : 'py-6'}`}>
       <div className="container mx-auto px-4">
@@ -49,7 +54,7 @@ const Navigation = () => {
               </button>
             ))}
             <button 
-              onClick={() => scrollToSection('contato')}
+              onClick={openDiagnosticForm}
               className="bg-primary-DEFAULT hover:bg-primary-light text-white px-6 py-2 rounded-full transition-all duration-300 hover-shine"
             >
               Agendar Consultoria Gratuita
@@ -85,7 +90,7 @@ const Navigation = () => {
                 </button>
               ))}
               <button 
-                onClick={() => scrollToSection('contato')}
+                onClick={openDiagnosticForm}
                 className="bg-primary-DEFAULT hover:bg-primary-light text-white px-6 py-2 rounded-full transition-all duration-300 w-full hover-shine"
               >
                 Agendar Consultoria Gratuita

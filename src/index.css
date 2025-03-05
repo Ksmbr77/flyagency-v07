@@ -37,6 +37,11 @@
     @apply bg-primary-dark text-white antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
     font-family: 'Inter', sans-serif;
+    text-rendering: optimizeSpeed;
+  }
+
+  img, video {
+    content-visibility: auto;
   }
 
   .glass {
@@ -55,6 +60,7 @@
     background: linear-gradient(120deg, transparent 30%, rgba(165,123,218,0.2) 50%, transparent 70%);
     background-size: 200% 100%;
     transition: background-position 0.8s ease-in-out;
+    will-change: background-position;
   }
 
   .hover-shine:hover {
@@ -75,6 +81,7 @@
 
   .animate-float {
     animation: float 6s ease-in-out infinite;
+    will-change: transform;
   }
 
   @keyframes float {
@@ -84,6 +91,7 @@
 
   .card-hover {
     @apply transition-all duration-300 hover:translate-y-[-4px] hover:shadow-lg hover:shadow-primary-light/10;
+    will-change: transform, box-shadow;
   }
 
   .input-style {
@@ -108,6 +116,7 @@
   .purple-text-effect::after {
     content: '';
     @apply absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-[#7A3B96] to-[#8833FF] transition-all duration-300;
+    will-change: width;
   }
   
   .purple-text-effect:hover::after {
@@ -135,6 +144,7 @@
 .animate-fade-in {
   opacity: 0;
   animation: fadeIn 0.5s ease-out forwards;
+  will-change: opacity, transform;
 }
 
 @keyframes fadeIn {
@@ -147,3 +157,28 @@
     transform: translateY(0);
   }
 }
+
+/* Add performance optimization classes */
+.transform-gpu {
+  transform: translateZ(0);
+}
+
+/* Optimize HTML rendering with content-visibility */
+.content-visibility-auto {
+  content-visibility: auto;
+}
+
+/* Better paint performance with contain property */
+.contain-paint {
+  contain: paint;
+}
+
+/* Optimize animations with will-change */
+.will-change-opacity {
+  will-change: opacity;
+}
+
+.will-change-transform {
+  will-change: transform;
+}
+
