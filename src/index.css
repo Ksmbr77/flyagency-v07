@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -57,14 +57,24 @@
   }
 
   .hover-shine {
-    background: linear-gradient(120deg, transparent 30%, rgba(165,123,218,0.2) 50%, transparent 70%);
-    background-size: 200% 100%;
-    transition: background-position 0.8s ease-in-out;
-    will-change: background-position;
+    position: relative;
+    overflow: hidden;
   }
 
-  .hover-shine:hover {
-    background-position: -100% 0;
+  .hover-shine::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+    transform: skewX(-25deg);
+    transition: left 0.75s ease-out;
+  }
+
+  .hover-shine:hover::after {
+    left: 150%;
   }
 
   .purple-gradient {
@@ -79,19 +89,8 @@
     @apply bg-gradient-to-br from-primary-light via-primary-neon to-primary-DEFAULT bg-clip-text text-transparent;
   }
 
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-    will-change: transform;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-
   .card-hover {
     @apply transition-all duration-300 hover:translate-y-[-4px] hover:shadow-lg hover:shadow-primary-light/10;
-    will-change: transform, box-shadow;
   }
 
   .input-style {
@@ -100,13 +99,15 @@
 
   .button-glow {
     @apply relative overflow-hidden transition-all duration-300;
-    &::after {
-      content: '';
-      @apply absolute inset-0 bg-gradient-to-r from-primary-neon to-primary-light opacity-0 transition-opacity duration-300;
-    }
-    &:hover::after {
-      @apply opacity-20;
-    }
+  }
+  
+  .button-glow::after {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-primary-neon to-primary-light opacity-0 transition-opacity duration-300;
+  }
+  
+  .button-glow:hover::after {
+    @apply opacity-20;
   }
   
   .purple-text-effect {
@@ -116,7 +117,6 @@
   .purple-text-effect::after {
     content: '';
     @apply absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-[#7A3B96] to-[#8833FF] transition-all duration-300;
-    will-change: width;
   }
   
   .purple-text-effect:hover::after {
@@ -144,7 +144,6 @@
 .animate-fade-in {
   opacity: 0;
   animation: fadeIn 0.5s ease-out forwards;
-  will-change: opacity, transform;
 }
 
 @keyframes fadeIn {
@@ -158,27 +157,16 @@
   }
 }
 
-/* Add performance optimization classes */
-.transform-gpu {
-  transform: translateZ(0);
-}
-
-/* Optimize HTML rendering with content-visibility */
+/* Optimize performance */
 .content-visibility-auto {
   content-visibility: auto;
 }
 
-/* Better paint performance with contain property */
 .contain-paint {
   contain: paint;
 }
 
-/* Optimize animations with will-change */
-.will-change-opacity {
-  will-change: opacity;
+/* Reduce DOM elements */
+[class^="shadow"] {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
-
-.will-change-transform {
-  will-change: transform;
-}
-
