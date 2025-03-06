@@ -165,7 +165,6 @@ const About = () => {
                     key={i}
                     className="w-10 h-10 rounded-full flex items-center justify-center bg-primary-dark/70 backdrop-blur-sm"
                     style={{ 
-                      animationDelay: `${i * 200}ms`,
                       animation: 'float 6s ease-in-out infinite',
                       animationDelay: `${i * 1.5}s`
                     }}

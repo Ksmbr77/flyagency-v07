@@ -6,19 +6,22 @@ const cases = [
     name: "Boné & Cia",
     description: "Aumento de 320% nas vendas online com funis automatizados e gestão de tráfego",
     image: "/lovable-uploads/24ab6c89-a75d-40a9-bf14-0f80b2e4f7dc.png",
-    results: ["320% mais vendas", "Funis automatizados", "ROI positivo"]
+    results: ["320% mais vendas", "Funis automatizados", "ROI positivo"],
+    link: "https://www.instagram.com/bone.cia1/"
   },
   {
     name: "Ótica Boa Luz",
     description: "Crescimento de 180% na captação de leads com campanhas personalizadas",
     image: "/lovable-uploads/f665838d-bacb-4cd1-9e19-33ca780cebd5.png",
-    results: ["180% mais leads", "Google Ads otimizado", "Automação de vendas"]
+    results: ["180% mais leads", "Google Ads otimizado", "Automação de vendas"],
+    link: "https://www.instagram.com/oticaboaluz/"
   },
   {
     name: "Oral Saúde",
     description: "Expansão de 250% no agendamento de consultas com estratégias avançadas",
     image: "/lovable-uploads/94c69708-fe55-4061-b264-068810becad7.png",
-    results: ["250% mais agendamentos", "Marketing digital", "Presença online"]
+    results: ["250% mais agendamentos", "Marketing digital", "Presença online"],
+    link: "https://www.instagram.com/clinicaoralsaude_/"
   }
 ];
 
@@ -72,10 +75,16 @@ const Cases = () => {
                 ))}
               </div>
 
-              <button className="w-full purple-gradient text-white px-4 py-2 rounded-full transition-all duration-300 flex items-center justify-center gap-2 group hover:opacity-90 transform hover:scale-105">
+              <a 
+                href={caseItem.link}
+                target="_blank" 
+                rel="noopener noreferrer"
+                aria-label={`Ver case completo de ${caseItem.name} no Instagram`}
+                className="w-full purple-gradient text-white px-4 py-2 rounded-full transition-all duration-300 flex items-center justify-center gap-2 group hover:opacity-90 transform hover:scale-105"
+              >
                 Ver Case Completo
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </a>
             </div>
           ))}
         </div>
