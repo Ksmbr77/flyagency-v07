@@ -11,14 +11,11 @@ import { Moon, Sun } from 'lucide-react';
 
 const Index = () => {
   const [theme, setTheme] = useState('dark');
-  const [mounted, setMounted] = useState(false);
 
-  // Handle theme initialization only once after component is mounted
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') || 'dark';
     setTheme(savedTheme);
     document.documentElement.classList.toggle('dark', savedTheme === 'dark');
-    setMounted(true);
   }, []);
 
   const toggleTheme = useCallback(() => {
@@ -27,14 +24,9 @@ const Index = () => {
     localStorage.setItem('theme', newTheme);
     document.documentElement.classList.toggle('dark', newTheme === 'dark');
   }, [theme]);
-  
-  // Apply default styles to optimize initial rendering
-  if (!mounted) {
-    return <div className="min-h-screen bg-black" />;
-  }
 
   return (
-    <main className="min-h-screen bg-black text-white transition-colors duration-300">
+    <main className="min-h-screen bg-gradient-to-b from-black to-primary-dark/20 text-white transition-colors duration-300">
       <Navigation />
       <button
         onClick={toggleTheme}

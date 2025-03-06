@@ -22,10 +22,13 @@ const Hero = () => {
   return (
     <div 
       id="inicio" 
-      className="min-h-[90vh] flex items-center relative overflow-hidden bg-black content-visibility-auto"
+      className="min-h-[90vh] flex items-center relative overflow-hidden bg-gradient-to-b from-black to-primary-dark/30 dark:from-black dark:to-primary-dark/20 content-visibility-auto"
     >
-      {/* Simplified background with just a gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black to-primary-DEFAULT/10 mix-blend-multiply" />
+      {/* Background elements - simplified for better performance */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-r from-black to-primary-DEFAULT/20 dark:from-black dark:to-primary-DEFAULT/10 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#7100FF,transparent_50%)]" />
+      </div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center space-y-6">
