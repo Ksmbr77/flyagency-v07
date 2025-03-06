@@ -1,12 +1,35 @@
 
 import { Check, BarChart3, ArrowUpRight, TrendingUp, LineChart } from 'lucide-react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const About = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
   
   useEffect(() => {
-    if (!canvasRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    
+    const currentElement = document.getElementById('chart-section');
+    if (currentElement) {
+      observer.observe(currentElement);
+    }
+    
+    return () => {
+      if (currentElement) {
+        observer.unobserve(currentElement);
+      }
+    };
+  }, []);
+  
+  useEffect(() => {
+    if (!canvasRef.current || !isVisible) return;
     
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
@@ -21,89 +44,190 @@ const About = () => {
     
     // Animation variables
     let animationFrameId: number;
-    let points: number[] = [];
-    const maxPoints = 50;
-    let hue = 280; // Purple hue
+    const years = ['2023', '2024', '2025'];
+    const metrics = [
+      { name: 'Leads', values: [45, 75, 95], color: '#8B5CF6' },
+      { name: 'Conversões', values: [30, 65, 90], color: '#7A3B96' },
+      { name: 'ROI', values: [20, 55, 85], color: '#D946EF' }
+    ];
     
-    // Generate initial points
-    for (let i = 0; i < maxPoints; i++) {
-      points.push(Math.sin(i * 0.2) * 50 + 80);
-    }
+    // Chart settings
+    const padding = { top: 40, right: 30, bottom: 60, left: 60 };
+    const chartWidth = (canvas.width / dpr) - padding.left - padding.right;
+    const chartHeight = (canvas.height / dpr) - padding.top - padding.bottom;
+    const animationProgress = { value: 0 };
     
     // Animation function
     const animate = () => {
+      // Clear canvas
       ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
       
-      // Shift points and add new one
-      points.shift();
-      points.push(Math.sin(Date.now() * 0.001) * 30 + 
-                 Math.sin(Date.now() * 0.002) * 20 + 80);
+      // Draw background
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+      ctx.fillRect(0, 0, canvas.width / dpr, canvas.height / dpr);
       
-      // Background gradient
-      const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height / dpr);
+      // Draw glow effect
+      const gradient = ctx.createRadialGradient(
+        canvas.width / dpr / 2, canvas.height / dpr / 2, 10,
+        canvas.width / dpr / 2, canvas.height / dpr / 2, canvas.width / dpr / 2
+      );
       gradient.addColorStop(0, 'rgba(114, 0, 255, 0.15)');
-      gradient.addColorStop(1, 'rgba(114, 0, 255, 0.01)');
-      
-      // Draw area under curve
-      ctx.beginPath();
-      ctx.moveTo(0, canvas.height / dpr);
-      
-      points.forEach((point, index) => {
-        const x = (index / (maxPoints - 1)) * (canvas.width / dpr);
-        ctx.lineTo(x, canvas.height / dpr - point);
-      });
-      
-      ctx.lineTo(canvas.width / dpr, canvas.height / dpr);
-      ctx.closePath();
+      gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
       ctx.fillStyle = gradient;
-      ctx.fill();
+      ctx.fillRect(0, 0, canvas.width / dpr, canvas.height / dpr);
       
-      // Draw line
-      ctx.beginPath();
-      points.forEach((point, index) => {
-        const x = (index / (maxPoints - 1)) * (canvas.width / dpr);
-        if (index === 0) {
-          ctx.moveTo(x, canvas.height / dpr - point);
-        } else {
-          ctx.lineTo(x, canvas.height / dpr - point);
-        }
-      });
+      // Draw grid
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+      ctx.lineWidth = 1;
       
-      ctx.strokeStyle = `hsl(${hue}, 100%, 65%)`;
-      ctx.lineWidth = 3;
-      ctx.lineCap = 'round';
-      ctx.lineJoin = 'round';
-      ctx.stroke();
-      
-      // Draw points
-      for (let i = 0; i < maxPoints; i += 5) {
-        const x = (i / (maxPoints - 1)) * (canvas.width / dpr);
-        const y = canvas.height / dpr - points[i];
-        
+      // Horizontal grid lines
+      for (let i = 0; i <= 100; i += 20) {
+        const y = padding.top + ((100 - i) / 100) * chartHeight;
         ctx.beginPath();
-        ctx.arc(x, y, 4, 0, Math.PI * 2);
-        ctx.fillStyle = `hsl(${hue}, 100%, 75%)`;
-        ctx.fill();
+        ctx.moveTo(padding.left, y);
+        ctx.lineTo(padding.left + chartWidth, y);
+        ctx.stroke();
         
-        ctx.beginPath();
-        ctx.arc(x, y, 2, 0, Math.PI * 2);
-        ctx.fillStyle = 'white';
-        ctx.fill();
+        // Y-axis labels
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+        ctx.font = '12px sans-serif';
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(`${i}%`, padding.left - 10, y);
       }
       
-      // Update hue for subtle color shift
-      hue = (hue + 0.1) % 360;
+      // Draw x-axis
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(padding.left, padding.top + chartHeight);
+      ctx.lineTo(padding.left + chartWidth, padding.top + chartHeight);
+      ctx.stroke();
       
-      animationFrameId = requestAnimationFrame(animate);
+      // X-axis labels (years)
+      years.forEach((year, i) => {
+        const x = padding.left + (i / (years.length - 1)) * chartWidth;
+        
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+        ctx.font = '14px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'top';
+        ctx.fillText(year, x, padding.top + chartHeight + 15);
+      });
+      
+      // Chart title
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+      ctx.font = 'bold 16px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      ctx.fillText('Crescimento de Performance Digital', canvas.width / dpr / 2, 15);
+      
+      // Draw data lines with animation
+      metrics.forEach((metric, metricIndex) => {
+        // Calculate points based on animation progress
+        const currentProgress = Math.min(1, animationProgress.value * 3 - metricIndex);
+        if (currentProgress <= 0) return;
+        
+        const points = years.map((_, i) => {
+          const x = padding.left + (i / (years.length - 1)) * chartWidth;
+          const maxValue = metric.values[i];
+          const animatedValue = i < years.length - 1 
+            ? maxValue 
+            : maxValue * Math.min(1, currentProgress);
+          const y = padding.top + ((100 - animatedValue) / 100) * chartHeight;
+          return { x, y, value: animatedValue };
+        });
+        
+        // Draw data line
+        ctx.strokeStyle = metric.color;
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        
+        points.forEach((point, i) => {
+          if (i === 0) {
+            ctx.moveTo(point.x, point.y);
+          } else {
+            // Only draw up to the current animation progress
+            if (i === years.length - 1 && currentProgress < 1) {
+              const prevPoint = points[i - 1];
+              const xDiff = point.x - prevPoint.x;
+              const yDiff = point.y - prevPoint.y;
+              ctx.lineTo(prevPoint.x + xDiff * currentProgress, prevPoint.y + yDiff * currentProgress);
+            } else {
+              ctx.lineTo(point.x, point.y);
+            }
+          }
+        });
+        
+        ctx.stroke();
+        
+        // Draw markers with animated appearance
+        points.forEach((point, i) => {
+          // Skip last point if animation not complete
+          if (i === years.length - 1 && currentProgress < 1) return;
+          
+          // Marker outer circle
+          ctx.beginPath();
+          ctx.arc(point.x, point.y, 6, 0, Math.PI * 2);
+          ctx.fillStyle = metric.color;
+          ctx.fill();
+          
+          // Marker inner circle
+          ctx.beginPath();
+          ctx.arc(point.x, point.y, 3, 0, Math.PI * 2);
+          ctx.fillStyle = 'white';
+          ctx.fill();
+          
+          // Value label
+          ctx.fillStyle = 'white';
+          ctx.font = 'bold 12px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'bottom';
+          ctx.fillText(`${Math.round(point.value)}%`, point.x, point.y - 10);
+        });
+      });
+      
+      // Draw legend
+      const legendX = padding.left;
+      const legendY = padding.top - 15;
+      const legendSpacing = 100;
+      
+      metrics.forEach((metric, i) => {
+        const x = legendX + i * legendSpacing;
+        
+        // Legend color box
+        ctx.fillStyle = metric.color;
+        ctx.fillRect(x, legendY, 12, 12);
+        
+        // Legend text
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.font = '12px sans-serif';
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(metric.name, x + 18, legendY + 6);
+      });
+      
+      // Update animation progress
+      if (animationProgress.value < 1) {
+        animationProgress.value += 0.005;
+        animationFrameId = requestAnimationFrame(animate);
+      } else {
+        // Add subtle breathing animation when main animation is complete
+        setTimeout(() => {
+          animationProgress.value = 0.98;
+          animationFrameId = requestAnimationFrame(animate);
+        }, 5000);
+      }
     };
     
+    // Start the animation
     animate();
     
     // Clean up
     return () => {
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [isVisible]);
   
   return (
     <section id="sobre" className="py-20 relative contain-paint">
@@ -145,40 +269,14 @@ const About = () => {
             </div>
           </div>
 
-          <div className="relative animate-fade-in [animation-delay:200ms] glass rounded-2xl p-6 overflow-hidden transform-gpu">
+          <div id="chart-section" className="relative animate-fade-in [animation-delay:200ms] glass rounded-2xl p-6 overflow-hidden transform-gpu">
             <div className="aspect-video w-full relative z-20">
               <canvas 
                 ref={canvasRef} 
                 className="w-full h-full rounded-lg" 
-                aria-label="Gráfico de crescimento de performance digital"
+                aria-label="Gráfico de crescimento de performance digital 2023-2025"
                 role="img"
               ></canvas>
-              
-              <div className="absolute bottom-4 left-4 bg-black/40 backdrop-blur-md p-3 rounded-lg text-sm text-white/90 flex items-center gap-2">
-                <TrendingUp className="w-4 h-4 text-primary-DEFAULT" />
-                <span>Performance 2023-2024</span>
-              </div>
-              
-              <div className="absolute top-4 right-4 flex gap-2">
-                {[0, 1, 2].map((i) => (
-                  <div 
-                    key={i}
-                    className="w-10 h-10 rounded-full flex items-center justify-center bg-primary-dark/70 backdrop-blur-sm"
-                    style={{ 
-                      animation: 'float 6s ease-in-out infinite',
-                      animationDelay: `${i * 1.5}s`
-                    }}
-                  >
-                    {i === 0 ? (
-                      <BarChart3 className="w-5 h-5 text-primary-DEFAULT" />
-                    ) : i === 1 ? (
-                      <TrendingUp className="w-5 h-5 text-primary-DEFAULT" />
-                    ) : (
-                      <LineChart className="w-5 h-5 text-primary-DEFAULT" />
-                    )}
-                  </div>
-                ))}
-              </div>
             </div>
             <div className="absolute inset-0 bg-[#7A3B96]/20 blur-3xl z-10" />
           </div>
