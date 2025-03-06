@@ -1,5 +1,6 @@
 
 import { ArrowRight } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 
 const Hero = () => {
   const scrollToContact = () => {
@@ -10,11 +11,63 @@ const Hero = () => {
     window.location.href = 'https://form.respondi.app/eODFSoBX';
   };
 
+  // Ref for the animated elements container
+  const particlesRef = useRef<HTMLDivElement>(null);
+
+  // Performance optimized particles effect
+  useEffect(() => {
+    if (!particlesRef.current) return;
+    
+    const container = particlesRef.current;
+    const particles: HTMLDivElement[] = [];
+    const numParticles = window.innerWidth < 768 ? 15 : 30;
+    
+    // Create particles
+    for (let i = 0; i < numParticles; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'absolute rounded-full bg-primary-light/20 backdrop-blur-sm will-change-transform';
+      
+      // Random size between 4px and 20px
+      const size = Math.random() * 16 + 4;
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      
+      // Random initial position
+      particle.style.left = `${Math.random() * 100}%`;
+      particle.style.top = `${Math.random() * 100}%`;
+      
+      // Random animation duration between 15s and 30s
+      const duration = Math.random() * 15 + 15;
+      particle.style.animation = `float ${duration}s ease-in-out infinite`;
+      particle.style.animationDelay = `-${Math.random() * duration}s`;
+      
+      container.appendChild(particle);
+      particles.push(particle);
+    }
+    
+    return () => {
+      particles.forEach(p => p.remove());
+    };
+  }, []);
+
+  // Handle keyboard accessibility
+  const handleKeyPress = (e: React.KeyboardEvent, action: () => void) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      action();
+    }
+  };
+
   return (
-    <div id="inicio" className="min-h-[90vh] flex items-center relative overflow-hidden bg-gradient-to-b from-white via-primary-light/5 to-white dark:from-black dark:to-primary-dark/20">
+    <div 
+      id="inicio" 
+      className="min-h-[90vh] flex items-center relative overflow-hidden bg-gradient-to-b from-white via-primary-light/5 to-white dark:from-black dark:to-primary-dark/20 content-visibility-auto"
+    >
+      {/* Background elements */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-r from-primary-DEFAULT/5 to-secondary-DEFAULT/5 dark:from-primary-dark/80 dark:to-black/50 mix-blend-multiply" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#7100FF,transparent_50%)]" />
+        <div ref={particlesRef} className="absolute inset-0 overflow-hidden" aria-hidden="true"></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -38,14 +91,18 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in [animation-delay:800ms] pb-0">
             <button 
               onClick={scrollToContact}
-              className="purple-gradient hover:opacity-90 text-white px-8 py-4 rounded-full transition-all duration-300 flex items-center gap-2 group hover:shadow-lg hover:shadow-primary-DEFAULT/20 hover-shine transform hover:scale-105"
+              onKeyDown={(e) => handleKeyPress(e, scrollToContact)}
+              className="purple-gradient hover:opacity-90 text-white px-8 py-4 rounded-full transition-all duration-300 flex items-center gap-2 group hover:shadow-lg hover:shadow-primary-DEFAULT/20 hover-shine transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT/50 focus:ring-offset-2 focus:ring-offset-black will-change-transform"
+              aria-label="Agendar Consultoria Gratuita"
             >
               Agendar Consultoria Gratuita
               <ArrowRight className="group-hover:translate-x-1 transition-transform" />
             </button>
             <button 
               onClick={openDiagnosticForm}
-              className="text-gray-800 dark:text-white hover:text-primary-DEFAULT border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-black/30 px-6 py-3 rounded-full transition-all duration-300 text-sm md:text-base flex items-center gap-2 group hover:border-primary-DEFAULT"
+              onKeyDown={(e) => handleKeyPress(e, openDiagnosticForm)}
+              className="text-gray-800 dark:text-white hover:text-primary-DEFAULT border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-black/30 px-6 py-3 rounded-full transition-all duration-300 text-sm md:text-base flex items-center gap-2 group hover:border-primary-DEFAULT focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT/50 focus:ring-offset-2 focus:ring-offset-black"
+              aria-label="Tenha um diagnóstico exclusivo"
             >
               Tenha um diagnóstico exclusivo
               <ArrowRight className="group-hover:translate-x-1 transition-transform text-primary-DEFAULT" />
