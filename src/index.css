@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
@@ -30,7 +29,19 @@
   }
 
   * {
-    @apply border-border selection:bg-primary-neon/20 selection:text-white dark:selection:bg-primary-neon/20 dark:selection:text-white selection:bg-primary-DEFAULT/20 selection:text-primary-DEFAULT;
+    @apply border-border;
+  }
+
+  *::selection {
+    @apply bg-primary-neon bg-opacity-20 text-white;
+  }
+
+  .dark *::selection {
+    @apply bg-primary-neon bg-opacity-20 text-white;
+  }
+
+  :is(.light) *::selection {
+    @apply bg-primary-DEFAULT bg-opacity-20 text-primary-DEFAULT;
   }
 
   body {
