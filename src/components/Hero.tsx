@@ -8,7 +8,7 @@ const Hero = () => {
   }, []);
 
   const openDiagnosticForm = useCallback(() => {
-    window.open('https://form.respondi.app/eODFSoBX', '_blank');
+    window.location.href = 'https://form.respondi.app/eODFSoBX';
   }, []);
 
   // Handle keyboard accessibility
@@ -37,7 +37,7 @@ const Hero = () => {
           </h4>
           
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight animate-fade-in [animation-delay:400ms] w-full tracking-normal sm:tracking-wide md:tracking-wide lg:tracking-wide">
-            A partir de agora, seu maior problema será<br className="hidden md:block" />
+            A partir de agora, seu maior problema será<br />
             <span className="bg-gradient-to-r from-[#7100FF] to-[#8833FF] bg-clip-text text-transparent">
               ter clientes demais
             </span>

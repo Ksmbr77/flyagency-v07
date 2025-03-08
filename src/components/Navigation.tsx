@@ -47,10 +47,10 @@ const Navigation = () => {
             <img 
               src="/lovable-uploads/e8dda4b2-cc66-4d60-9716-5d5798b15974.png" 
               alt="Fly Agency Logo" 
-              className="h-20 md:h-24 w-auto transform-gpu" 
+              className="h-16 md:h-20 w-auto transform-gpu" 
               loading="eager"
-              width="120"
-              height="96"
+              width="100"
+              height="80"
             />
           </div>
 
