@@ -1,103 +1,73 @@
 
 import { Check, BarChart3, ArrowUpRight, TrendingUp, LineChart } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 const About = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
   
   useEffect(() => {
     if (!canvasRef.current) return;
-    
-    // Set up intersection observer for performance
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-    
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-    
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-  
-  useEffect(() => {
-    if (!canvasRef.current || !isVisible) return;
     
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
     
-    // Optimize canvas rendering
+    // Ensure canvas dimensions match its display size
     const dpr = window.devicePixelRatio || 1;
     const rect = canvas.getBoundingClientRect();
     canvas.width = rect.width * dpr;
     canvas.height = rect.height * dpr;
     ctx.scale(dpr, dpr);
     
-    // Animation variables with improved performance
+    // Animation variables
     let animationFrameId: number;
     let points: number[] = [];
-    const maxPoints = 40; // Reduced for better performance
+    const maxPoints = 50;
     let hue = 280; // Purple hue
     
-    // Generate initial points - optimized calculation
+    // Generate initial points
     for (let i = 0; i < maxPoints; i++) {
       points.push(Math.sin(i * 0.2) * 50 + 80);
     }
     
-    // Optimized animation function with reduced calculations
+    // Animation function
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
       
-      // Shift points and add new one - simplified calculation
+      // Shift points and add new one
       points.shift();
       points.push(Math.sin(Date.now() * 0.001) * 30 + 
                  Math.sin(Date.now() * 0.002) * 20 + 80);
       
-      // Cached height value for better performance
-      const canvasHeight = canvas.height / dpr;
-      const canvasWidth = canvas.width / dpr;
-      
-      // Background gradient - simplified
-      const gradient = ctx.createLinearGradient(0, 0, 0, canvasHeight);
+      // Background gradient
+      const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height / dpr);
       gradient.addColorStop(0, 'rgba(114, 0, 255, 0.15)');
       gradient.addColorStop(1, 'rgba(114, 0, 255, 0.01)');
       
-      // Draw area under curve - optimized path
+      // Draw area under curve
       ctx.beginPath();
-      ctx.moveTo(0, canvasHeight);
+      ctx.moveTo(0, canvas.height / dpr);
       
-      // Use optimized loop
-      for (let i = 0; i < maxPoints; i++) {
-        const x = (i / (maxPoints - 1)) * canvasWidth;
-        ctx.lineTo(x, canvasHeight - points[i]);
-      }
+      points.forEach((point, index) => {
+        const x = (index / (maxPoints - 1)) * (canvas.width / dpr);
+        ctx.lineTo(x, canvas.height / dpr - point);
+      });
       
-      ctx.lineTo(canvasWidth, canvasHeight);
+      ctx.lineTo(canvas.width / dpr, canvas.height / dpr);
       ctx.closePath();
       ctx.fillStyle = gradient;
       ctx.fill();
       
-      // Draw line - optimized
+      // Draw line
       ctx.beginPath();
-      for (let i = 0; i < maxPoints; i++) {
-        const x = (i / (maxPoints - 1)) * canvasWidth;
-        if (i === 0) {
-          ctx.moveTo(x, canvasHeight - points[i]);
+      points.forEach((point, index) => {
+        const x = (index / (maxPoints - 1)) * (canvas.width / dpr);
+        if (index === 0) {
+          ctx.moveTo(x, canvas.height / dpr - point);
         } else {
-          ctx.lineTo(x, canvasHeight - points[i]);
+          ctx.lineTo(x, canvas.height / dpr - point);
         }
-      }
+      });
       
       ctx.strokeStyle = `hsl(${hue}, 100%, 65%)`;
       ctx.lineWidth = 3;
@@ -105,10 +75,10 @@ const About = () => {
       ctx.lineJoin = 'round';
       ctx.stroke();
       
-      // Draw fewer points for better performance
-      for (let i = 0; i < maxPoints; i += 8) {
-        const x = (i / (maxPoints - 1)) * canvasWidth;
-        const y = canvasHeight - points[i];
+      // Draw points
+      for (let i = 0; i < maxPoints; i += 5) {
+        const x = (i / (maxPoints - 1)) * (canvas.width / dpr);
+        const y = canvas.height / dpr - points[i];
         
         ctx.beginPath();
         ctx.arc(x, y, 4, 0, Math.PI * 2);
@@ -121,21 +91,22 @@ const About = () => {
         ctx.fill();
       }
       
-      // Update hue less frequently
-      hue = (hue + 0.05) % 360;
+      // Update hue for subtle color shift
+      hue = (hue + 0.1) % 360;
       
       animationFrameId = requestAnimationFrame(animate);
     };
     
     animate();
     
+    // Clean up
     return () => {
       cancelAnimationFrame(animationFrameId);
     };
-  }, [isVisible]);
+  }, []);
   
   return (
-    <section id="sobre" ref={sectionRef} className="py-20 relative contain-paint">
+    <section id="sobre" className="py-20 relative contain-paint">
       <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/20 to-black" />
       
       <div className="container mx-auto px-4 relative z-10">
@@ -183,13 +154,13 @@ const About = () => {
                 role="img"
               ></canvas>
               
-              <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md p-3 rounded-lg text-sm text-white/90 flex items-center gap-2 shadow-md">
+              <div className="absolute bottom-4 left-4 bg-black/40 backdrop-blur-md p-3 rounded-lg text-sm text-white/90 flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 text-primary-DEFAULT" />
-                <span>Performance 2024-2025</span>
+                <span>Performance 2023-2024</span>
               </div>
               
               <div className="absolute top-4 right-4 flex gap-2">
-                {[0, 1].map((i) => (
+                {[0, 1, 2].map((i) => (
                   <div 
                     key={i}
                     className="w-10 h-10 rounded-full flex items-center justify-center bg-primary-dark/70 backdrop-blur-sm"
@@ -200,14 +171,16 @@ const About = () => {
                   >
                     {i === 0 ? (
                       <BarChart3 className="w-5 h-5 text-primary-DEFAULT" />
-                    ) : (
+                    ) : i === 1 ? (
                       <TrendingUp className="w-5 h-5 text-primary-DEFAULT" />
+                    ) : (
+                      <LineChart className="w-5 h-5 text-primary-DEFAULT" />
                     )}
                   </div>
                 ))}
               </div>
             </div>
-            <div className="absolute inset-0 bg-[#7A3B96]/10 blur-3xl z-10 opacity-60" />
+            <div className="absolute inset-0 bg-[#7A3B96]/20 blur-3xl z-10" />
           </div>
         </div>
       </div>

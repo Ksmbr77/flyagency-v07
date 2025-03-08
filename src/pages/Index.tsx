@@ -1,15 +1,13 @@
 
-import { useState, useEffect, useCallback, lazy, Suspense } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
+import Services from '@/components/Services';
+import About from '@/components/About';
+import Cases from '@/components/Cases';
+import Contact from '@/components/Contact';
+import Footer from '@/components/Footer';
 import { Moon, Sun } from 'lucide-react';
-
-// Lazy load non-critical components for better performance
-const Services = lazy(() => import('@/components/Services'));
-const About = lazy(() => import('@/components/About'));
-const Cases = lazy(() => import('@/components/Cases'));
-const Contact = lazy(() => import('@/components/Contact'));
-const Footer = lazy(() => import('@/components/Footer'));
 
 const Index = () => {
   const [theme, setTheme] = useState('dark');
@@ -28,7 +26,7 @@ const Index = () => {
   }, [theme]);
 
   return (
-    <main className="min-h-screen bg-black text-white transition-colors duration-300">
+    <main className="min-h-screen bg-gradient-to-b from-black to-primary-dark/20 text-white transition-colors duration-300">
       <Navigation />
       <button
         onClick={toggleTheme}
@@ -42,15 +40,11 @@ const Index = () => {
         )}
       </button>
       <Hero />
-      
-      {/* Use Suspense for lazy-loaded components */}
-      <Suspense fallback={<div className="h-20 flex items-center justify-center">Carregando...</div>}>
-        <Services />
-        <About />
-        <Cases />
-        <Contact />
-        <Footer />
-      </Suspense>
+      <Services />
+      <About />
+      <Cases />
+      <Contact />
+      <Footer />
     </main>
   );
 };
