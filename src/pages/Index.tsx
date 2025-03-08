@@ -16,6 +16,7 @@ const Index = () => {
     const savedTheme = localStorage.getItem('theme') || 'dark';
     setTheme(savedTheme);
     document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+    document.body.style.backgroundColor = savedTheme === 'dark' ? '#0D0D0D' : '#ffffff';
   }, []);
 
   const toggleTheme = useCallback(() => {
@@ -23,14 +24,19 @@ const Index = () => {
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
     document.documentElement.classList.toggle('dark', newTheme === 'dark');
+    document.body.style.backgroundColor = newTheme === 'dark' ? '#0D0D0D' : '#ffffff';
   }, [theme]);
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-black to-primary-dark/20 text-white transition-colors duration-300">
+    <main className={`min-h-screen bg-white dark:bg-gradient-to-b dark:from-black dark:to-primary-dark/20 transition-colors duration-300 ${theme === 'light' ? 'text-gray-900' : 'text-white'}`}>
       <Navigation />
       <button
         onClick={toggleTheme}
-        className="fixed top-24 right-6 z-50 bg-black/80 dark:bg-primary-dark/50 p-3 rounded-full shadow-lg hover:bg-gray-900 dark:hover:bg-primary-dark transition-colors"
+        className={`fixed top-24 right-6 z-50 p-3 rounded-full shadow-lg transition-colors ${
+          theme === 'dark' 
+            ? 'bg-primary-dark/50 hover:bg-primary-dark' 
+            : 'bg-white/80 hover:bg-white shadow-md'
+        }`}
         aria-label={theme === 'dark' ? 'Alternar para modo claro' : 'Alternar para modo escuro'}
       >
         {theme === 'dark' ? (

@@ -7,8 +7,8 @@
  
 @layer base {
   :root {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 100%;
     --popover: 240 10% 3.9%;
@@ -30,11 +30,11 @@
   }
 
   * {
-    @apply border-border selection:bg-primary-neon/20 selection:text-white;
+    @apply border-border selection:bg-primary-neon/20 selection:text-white dark:selection:bg-primary-neon/20 dark:selection:text-white selection:bg-primary-DEFAULT/20 selection:text-primary-DEFAULT;
   }
 
   body {
-    @apply bg-primary-dark text-white antialiased;
+    @apply bg-white dark:bg-primary-dark text-gray-900 dark:text-white antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
     font-family: 'Inter', sans-serif;
     text-rendering: optimizeSpeed;
@@ -45,15 +45,15 @@
   }
 
   .glass {
-    @apply backdrop-blur-xl bg-white/5 border border-white/10 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.3)];
+    @apply backdrop-blur-xl bg-white/80 dark:bg-white/5 border border-white/40 dark:border-white/10 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.15)] dark:shadow-[0_4px_12px_-2px_rgba(0,0,0,0.3)];
   }
 
   .glass-dark {
-    @apply backdrop-blur-2xl bg-black/40 border border-white/10;
+    @apply backdrop-blur-2xl bg-white/90 dark:bg-black/40 border border-gray-200 dark:border-white/10;
   }
 
   .neo-blur {
-    @apply backdrop-blur-2xl bg-black/40 border border-primary-light/20;
+    @apply backdrop-blur-2xl bg-white/80 dark:bg-black/40 border border-primary-light/20;
   }
 
   .hover-shine {
@@ -80,9 +80,13 @@
   .purple-gradient {
     @apply bg-gradient-to-r from-primary-neon to-primary-light;
   }
+  
+  .light-purple-button {
+    @apply bg-gradient-to-r from-[#7100FF] to-[#8833FF] text-white;
+  }
 
   .text-gradient {
-    @apply bg-gradient-to-br from-white via-white/90 to-white/70 bg-clip-text text-transparent;
+    @apply bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 dark:from-white dark:via-white/90 dark:to-white/70 bg-clip-text text-transparent;
   }
 
   .text-gradient-primary {
@@ -94,7 +98,7 @@
   }
 
   .input-style {
-    @apply bg-black/20 border border-primary-light/20 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary-light/50 transition-all duration-300;
+    @apply bg-gray-100 dark:bg-black/20 border border-gray-300 dark:border-primary-light/20 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary-light/50 transition-all duration-300;
   }
 
   .button-glow {
@@ -169,4 +173,19 @@
 /* Reduce DOM elements */
 [class^="shadow"] {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Dark/Light mode transitions */
+.dark body {
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color-scheme: dark;
+  }
+}
+
+.theme-transition {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
