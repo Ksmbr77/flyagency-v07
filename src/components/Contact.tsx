@@ -57,24 +57,24 @@ const Contact = () => {
 
   return (
     <section id="contato" className="py-16 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-gray-50 to-white dark:from-black dark:via-primary-dark/20 dark:to-black" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-primary-dark/20 to-black" />
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto neo-blur rounded-2xl p-8 md:p-12">
           <div className="text-center mb-10 animate-fade-in">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Que tal receber um <span className="text-primary-DEFAULT">diagnóstico gratuito</span> do seu negócio?
             </h2>
-            <p className="text-gray-700 dark:text-gray-300 mb-6">
+            <p className="text-gray-300 mb-6">
               Preencha o formulário abaixo e nossa equipe entrará em contato em até 24 horas
             </p>
-            <p className="text-gray-500 dark:text-gray-400 text-sm">Entre em contato diretamente:</p>
+            <p className="text-gray-400 text-sm">Entre em contato diretamente:</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6 animate-fade-in [animation-delay:200ms]">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
                   Nome
                 </label>
                 <input
@@ -82,13 +82,13 @@ const Contact = () => {
                   id="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg bg-white dark:bg-black/30 border border-gray-300 dark:border-primary-DEFAULT/30 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT focus:border-transparent transition-all duration-300"
+                  className="w-full px-4 py-3 rounded-lg bg-black/30 border border-primary-DEFAULT/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT focus:border-transparent transition-all duration-300"
                   placeholder="Seu nome completo"
                   required
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
                   E-mail
                 </label>
                 <input
@@ -96,7 +96,7 @@ const Contact = () => {
                   id="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg bg-white dark:bg-black/30 border border-gray-300 dark:border-primary-DEFAULT/30 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT focus:border-transparent transition-all duration-300"
+                  className="w-full px-4 py-3 rounded-lg bg-black/30 border border-primary-DEFAULT/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT focus:border-transparent transition-all duration-300"
                   placeholder="Seu e-mail profissional"
                   required
                 />
@@ -104,7 +104,7 @@ const Contact = () => {
             </div>
 
             <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">
                 Telefone
               </label>
               <input
@@ -112,14 +112,14 @@ const Contact = () => {
                 id="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg bg-white dark:bg-black/30 border border-gray-300 dark:border-primary-DEFAULT/30 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT focus:border-transparent transition-all duration-300"
+                className="w-full px-4 py-3 rounded-lg bg-black/30 border border-primary-DEFAULT/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT focus:border-transparent transition-all duration-300"
                 placeholder="(00) 00000-0000"
                 required
               />
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
                 Mensagem
               </label>
               <textarea
@@ -127,14 +127,14 @@ const Contact = () => {
                 rows={4}
                 value={formData.message}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg bg-white dark:bg-black/30 border border-gray-300 dark:border-primary-DEFAULT/30 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT focus:border-transparent transition-all duration-300 resize-none"
+                className="w-full px-4 py-3 rounded-lg bg-black/30 border border-primary-DEFAULT/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT focus:border-transparent transition-all duration-300 resize-none"
                 placeholder="Como podemos ajudar seu negócio?"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full light-purple-button text-white px-8 py-4 rounded-full transition-all duration-300 flex items-center justify-center gap-2 group hover:shadow-lg hover:shadow-primary-DEFAULT/20"
+              className="w-full bg-primary-DEFAULT hover:bg-primary-light text-white px-8 py-4 rounded-full transition-all duration-300 flex items-center justify-center gap-2 group hover:shadow-lg hover:shadow-primary-DEFAULT/20"
             >
               Agendar Consultoria Gratuita
               <ArrowRight className="group-hover:translate-x-1 transition-transform" />

@@ -16,7 +16,6 @@ const Index = () => {
     const savedTheme = localStorage.getItem('theme') || 'dark';
     setTheme(savedTheme);
     document.documentElement.classList.toggle('dark', savedTheme === 'dark');
-    document.body.classList.add('theme-transition');
   }, []);
 
   const toggleTheme = useCallback(() => {
@@ -27,17 +26,17 @@ const Index = () => {
   }, [theme]);
 
   return (
-    <main className="min-h-screen bg-white dark:bg-gradient-to-b dark:from-black dark:to-primary-dark/20 text-gray-900 dark:text-white transition-colors duration-300">
+    <main className="min-h-screen bg-gradient-to-b from-black to-primary-dark/20 text-white transition-colors duration-300">
       <Navigation />
       <button
         onClick={toggleTheme}
-        className="fixed top-24 right-6 z-50 bg-primary-DEFAULT/90 dark:bg-primary-dark/80 p-3 rounded-full shadow-lg hover:bg-primary-light dark:hover:bg-primary-DEFAULT/80 transition-colors"
+        className="fixed top-24 right-6 z-50 bg-black/80 dark:bg-primary-dark/50 p-3 rounded-full shadow-lg hover:bg-gray-900 dark:hover:bg-primary-dark transition-colors"
         aria-label={theme === 'dark' ? 'Alternar para modo claro' : 'Alternar para modo escuro'}
       >
         {theme === 'dark' ? (
           <Sun className="w-6 h-6 text-yellow-500" />
         ) : (
-          <Moon className="w-6 h-6 text-white" />
+          <Moon className="w-6 h-6 text-primary-DEFAULT" />
         )}
       </button>
       <Hero />
