@@ -1,13 +1,15 @@
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, lazy, Suspense } from 'react';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
-import Services from '@/components/Services';
-import About from '@/components/About';
-import Cases from '@/components/Cases';
-import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
 import { Moon, Sun } from 'lucide-react';
+
+// Lazy load non-critical components for better performance
+const Services = lazy(() => import('@/components/Services'));
+const About = lazy(() => import('@/components/About'));
+const Cases = lazy(() => import('@/components/Cases'));
+const Contact = lazy(() => import('@/components/Contact'));
+const Footer = lazy(() => import('@/components/Footer'));
 
 const Index = () => {
   const [theme, setTheme] = useState('dark');
@@ -16,7 +18,6 @@ const Index = () => {
     const savedTheme = localStorage.getItem('theme') || 'dark';
     setTheme(savedTheme);
     document.documentElement.classList.toggle('dark', savedTheme === 'dark');
-    document.body.style.backgroundColor = savedTheme === 'dark' ? '#0D0D0D' : '#ffffff';
   }, []);
 
   const toggleTheme = useCallback(() => {
@@ -24,19 +25,14 @@ const Index = () => {
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
     document.documentElement.classList.toggle('dark', newTheme === 'dark');
-    document.body.style.backgroundColor = newTheme === 'dark' ? '#0D0D0D' : '#ffffff';
   }, [theme]);
 
   return (
-    <main className={`min-h-screen bg-white dark:bg-gradient-to-b dark:from-black dark:to-primary-dark/20 transition-colors duration-300 ${theme === 'light' ? 'text-gray-900' : 'text-white'}`}>
+    <main className="min-h-screen bg-black text-white transition-colors duration-300">
       <Navigation />
       <button
         onClick={toggleTheme}
-        className={`fixed top-24 right-6 z-50 p-3 rounded-full shadow-lg transition-colors ${
-          theme === 'dark' 
-            ? 'bg-primary-dark/50 hover:bg-primary-dark' 
-            : 'bg-white/80 hover:bg-white shadow-md'
-        }`}
+        className="fixed top-24 right-6 z-50 bg-black/80 dark:bg-primary-dark/50 p-3 rounded-full shadow-lg hover:bg-gray-900 dark:hover:bg-primary-dark transition-colors"
         aria-label={theme === 'dark' ? 'Alternar para modo claro' : 'Alternar para modo escuro'}
       >
         {theme === 'dark' ? (
@@ -46,11 +42,15 @@ const Index = () => {
         )}
       </button>
       <Hero />
-      <Services />
-      <About />
-      <Cases />
-      <Contact />
-      <Footer />
+      
+      {/* Use Suspense for lazy-loaded components */}
+      <Suspense fallback={<div className="h-20 flex items-center justify-center">Carregando...</div>}>
+        <Services />
+        <About />
+        <Cases />
+        <Contact />
+        <Footer />
+      </Suspense>
     </main>
   );
 };

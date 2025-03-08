@@ -1,3 +1,4 @@
+
 import { Instagram, Youtube, Mail, Phone, ArrowRight, MessageCircle } from 'lucide-react';
 
 const Footer = () => {
@@ -13,7 +14,7 @@ const Footer = () => {
             <img 
               src="/lovable-uploads/e8dda4b2-cc66-4d60-9716-5d5798b15974.png" 
               alt="Fly Agency Logo" 
-              className="h-24 w-auto"
+              className="h-20 w-auto"
             />
             <div className="flex gap-4">
               <a 

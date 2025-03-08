@@ -22,12 +22,11 @@ const Hero = () => {
   return (
     <div 
       id="inicio" 
-      className="min-h-[90vh] flex items-center relative overflow-hidden bg-gradient-to-b from-black to-primary-dark/30 dark:from-black dark:to-primary-dark/20 content-visibility-auto"
+      className="min-h-[90vh] flex items-center relative overflow-hidden bg-black content-visibility-auto"
     >
-      {/* Background elements - simplified for better performance */}
+      {/* Simplified background with better performance */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-black to-primary-DEFAULT/20 dark:from-black dark:to-primary-DEFAULT/10 mix-blend-multiply" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#7100FF,transparent_50%)]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black to-primary-DEFAULT/10 mix-blend-multiply" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -36,14 +35,14 @@ const Hero = () => {
             BEM-VINDO À FLY AGENCY
           </h4>
           
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white dark:text-white text-gray-900 leading-tight animate-fade-in [animation-delay:400ms] w-full tracking-normal sm:tracking-wide md:tracking-wide lg:tracking-wide">
-            A partir de agora, seu maior problema será<br />
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight animate-fade-in [animation-delay:400ms] w-full tracking-normal sm:tracking-wide md:tracking-wide lg:tracking-wide">
+            A partir de agora, seu maior problema será<br className="hidden md:block" />
             <span className="bg-gradient-to-r from-[#7100FF] to-[#8833FF] bg-clip-text text-transparent">
               ter clientes demais
             </span>
           </h1>
           
-          <p className="text-base sm:text-lg md:text-xl text-gray-300 dark:text-gray-300 text-gray-700 max-w-2xl mx-auto animate-fade-in [animation-delay:600ms] leading-snug md:leading-normal sm:px-6 px-4">
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto animate-fade-in [animation-delay:600ms] leading-snug md:leading-normal sm:px-6 px-4">
             Tenha acesso a estratégias avançadas de marketing <span className="xs:hidden sm:inline"> </span><br className="hidden md:block" />
             para escalar seu negócio com tráfego pago, automação e conteúdo profissional.
           </p>
@@ -52,7 +51,7 @@ const Hero = () => {
             <button 
               onClick={scrollToContact}
               onKeyDown={(e) => handleKeyPress(e, scrollToContact)}
-              className="purple-gradient dark:purple-gradient light-purple-button hover:opacity-90 text-white px-8 py-4 rounded-full transition-all duration-300 flex items-center gap-2 group hover:shadow-lg hover:shadow-primary-DEFAULT/20 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT/50 focus:ring-offset-2 focus:ring-offset-black will-change-transform"
+              className="purple-gradient hover:opacity-90 text-white px-8 py-4 rounded-full transition-all duration-300 flex items-center gap-2 group hover:shadow-lg hover:shadow-primary-DEFAULT/20 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT/50 focus:ring-offset-2 focus:ring-offset-black will-change-transform"
               aria-label="Agendar Consultoria Gratuita"
             >
               Agendar Consultoria Gratuita
@@ -61,7 +60,7 @@ const Hero = () => {
             <button 
               onClick={openDiagnosticForm}
               onKeyDown={(e) => handleKeyPress(e, openDiagnosticForm)}
-              className="text-white dark:text-white text-primary-dark hover:text-primary-DEFAULT border border-gray-700 dark:border-gray-700 border-primary-DEFAULT/50 bg-black/30 dark:bg-black/30 bg-white/80 px-6 py-3 rounded-full transition-all duration-300 text-sm md:text-base flex items-center gap-2 group hover:border-primary-DEFAULT focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT/50 focus:ring-offset-2 focus:ring-offset-black"
+              className="text-white hover:text-primary-DEFAULT border border-gray-700 bg-black/30 px-6 py-3 rounded-full transition-all duration-300 text-sm md:text-base flex items-center gap-2 group hover:border-primary-DEFAULT focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT/50 focus:ring-offset-2 focus:ring-offset-black"
               aria-label="Tenha um diagnóstico exclusivo"
             >
               Tenha um diagnóstico exclusivo

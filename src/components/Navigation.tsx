@@ -47,10 +47,10 @@ const Navigation = () => {
             <img 
               src="/lovable-uploads/e8dda4b2-cc66-4d60-9716-5d5798b15974.png" 
               alt="Fly Agency Logo" 
-              className="h-20 md:h-24 w-auto transform-gpu" 
+              className="h-16 md:h-20 w-auto transform-gpu" 
               loading="eager"
-              width="120"
-              height="96"
+              width="100"
+              height="80"
             />
           </div>
 
@@ -67,7 +67,7 @@ const Navigation = () => {
                 key={item.name}
                 onClick={() => scrollToSection(item.id)}
                 onKeyDown={(e) => handleKeyPress(e, () => scrollToSection(item.id))}
-                className="text-white hover:text-primary-DEFAULT transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT/50 focus:ring-offset-2 focus:ring-offset-black rounded-md px-2 py-1 dark:text-white dark:hover:text-primary-light"
+                className="text-white hover:text-primary-DEFAULT transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT/50 focus:ring-offset-2 focus:ring-offset-black rounded-md px-2 py-1"
                 aria-label={`Navegar para seção ${item.name}`}
               >
                 {item.name}
@@ -76,7 +76,7 @@ const Navigation = () => {
             <button 
               onClick={() => scrollToSection('contato')}
               onKeyDown={(e) => handleKeyPress(e, () => scrollToSection('contato'))}
-              className="bg-primary-DEFAULT hover:bg-primary-light text-white px-6 py-2 rounded-full transition-all duration-300 hover-shine focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT/50 focus:ring-offset-2 focus:ring-offset-black will-change-transform transform hover:scale-105 dark:hover:bg-primary-neon"
+              className="bg-primary-DEFAULT hover:bg-primary-light text-white px-6 py-2 rounded-full transition-all duration-300 hover-shine focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT/50 focus:ring-offset-2 focus:ring-offset-black will-change-transform transform hover:scale-105"
               aria-label="Agendar Consultoria Gratuita"
             >
               Agendar Consultoria Gratuita
