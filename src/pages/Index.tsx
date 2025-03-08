@@ -26,11 +26,11 @@ const Index = () => {
   }, [theme]);
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-black to-primary-dark/20 text-white transition-colors duration-300">
+    <main className="min-h-screen bg-white dark:bg-gradient-to-b dark:from-black dark:to-primary-dark/20 text-gray-900 dark:text-white transition-colors duration-300">
       <Navigation />
       <button
         onClick={toggleTheme}
-        className="fixed top-24 right-6 z-50 bg-black/80 dark:bg-primary-dark/50 p-3 rounded-full shadow-lg hover:bg-gray-900 dark:hover:bg-primary-dark transition-colors"
+        className="fixed top-24 right-6 z-50 bg-white/80 dark:bg-black/80 p-3 rounded-full shadow-lg hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
         aria-label={theme === 'dark' ? 'Alternar para modo claro' : 'Alternar para modo escuro'}
       >
         {theme === 'dark' ? (
