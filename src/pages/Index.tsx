@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useCallback } from 'react';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
@@ -7,7 +6,6 @@ import About from '@/components/About';
 import Cases from '@/components/Cases';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-import { Moon, Sun } from 'lucide-react';
 
 const Index = () => {
   const [theme, setTheme] = useState('dark');
@@ -18,27 +16,9 @@ const Index = () => {
     document.documentElement.classList.toggle('dark', savedTheme === 'dark');
   }, []);
 
-  const toggleTheme = useCallback(() => {
-    const newTheme = theme === 'dark' ? 'light' : 'dark';
-    setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
-  }, [theme]);
-
   return (
     <main className="min-h-screen bg-white dark:bg-gradient-to-b dark:from-black dark:to-primary-dark/20 text-gray-900 dark:text-white transition-colors duration-300">
       <Navigation />
-      <button
-        onClick={toggleTheme}
-        className="fixed top-24 right-6 z-50 bg-white/80 dark:bg-black/80 p-3 rounded-full shadow-lg hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
-        aria-label={theme === 'dark' ? 'Alternar para modo claro' : 'Alternar para modo escuro'}
-      >
-        {theme === 'dark' ? (
-          <Sun className="w-6 h-6 text-yellow-500" />
-        ) : (
-          <Moon className="w-6 h-6 text-primary-DEFAULT" />
-        )}
-      </button>
       <Hero />
       <Services />
       <About />
