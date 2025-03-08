@@ -156,7 +156,7 @@ const About = () => {
               
               <div className="absolute bottom-4 left-4 bg-black/40 backdrop-blur-md p-3 rounded-lg text-sm text-white/90 flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 text-primary-DEFAULT" />
-                <span>Performance 2023-2024</span>
+                <span>Performance 2024-2025</span>
               </div>
               
               <div className="absolute top-4 right-4 flex gap-2">
