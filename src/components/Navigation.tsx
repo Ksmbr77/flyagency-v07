@@ -43,14 +43,14 @@ const Navigation = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
-          <div>
+          <div className="flex items-center">
             <img 
               src="/lovable-uploads/e8dda4b2-cc66-4d60-9716-5d5798b15974.png" 
               alt="Fly Agency Logo" 
-              className="h-24 md:h-28 w-auto transform-gpu" 
+              className="h-20 md:h-24 w-auto transform-gpu" 
               loading="eager"
-              width="140"
-              height="112"
+              width="120"
+              height="96"
             />
           </div>
 
