@@ -73,14 +73,16 @@ const Navigation = () => {
                 {item.name}
               </button>
             ))}
-            <button 
-              onClick={() => scrollToSection('contato')}
-              onKeyDown={(e) => handleKeyPress(e, () => scrollToSection('contato'))}
+            <a 
+              href="https://wa.link/r4rqk9"
+              target="_blank"
+              rel="noopener noreferrer"
+              onKeyDown={(e) => handleKeyPress(e, () => window.open('https://wa.link/r4rqk9', '_blank'))}
               className="bg-primary-DEFAULT hover:bg-primary-light text-white px-6 py-2 rounded-full transition-all duration-300 hover-shine focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT/50 focus:ring-offset-2 focus:ring-offset-black will-change-transform transform hover:scale-105"
               aria-label="Agendar Consultoria Gratuita"
             >
               Agendar Consultoria Gratuita
-            </button>
+            </a>
           </div>
 
           {/* Mobile Menu Button - Improved for accessibility */}
@@ -120,14 +122,15 @@ const Navigation = () => {
                   {item.name}
                 </button>
               ))}
-              <button 
-                onClick={() => scrollToSection('contato')}
-                onKeyDown={(e) => handleKeyPress(e, () => scrollToSection('contato'))}
-                className="bg-primary-DEFAULT hover:bg-primary-light text-white px-6 py-2 rounded-full transition-all duration-300 w-full hover-shine focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT/50"
+              <a 
+                href="https://wa.link/r4rqk9"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-primary-DEFAULT hover:bg-primary-light text-white px-6 py-2 rounded-full transition-all duration-300 w-full hover-shine focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT/50 text-center"
                 role="menuitem"
               >
                 Agendar Consultoria Gratuita
-              </button>
+              </a>
             </div>
           </div>
         )}

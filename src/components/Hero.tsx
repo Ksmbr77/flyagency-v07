@@ -49,15 +49,17 @@ const Hero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in [animation-delay:800ms] pb-0">
-            <button 
-              onClick={scrollToContact}
-              onKeyDown={(e) => handleKeyPress(e, scrollToContact)}
+            <a 
+              href="https://wa.link/r4rqk9"
+              target="_blank"
+              rel="noopener noreferrer"
+              onKeyDown={(e) => handleKeyPress(e, () => window.open('https://wa.link/r4rqk9', '_blank'))}
               className="purple-gradient hover:opacity-90 text-white px-8 py-4 rounded-full transition-all duration-300 flex items-center gap-2 group hover:shadow-lg hover:shadow-primary-DEFAULT/20 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT/50 focus:ring-offset-2 focus:ring-offset-black will-change-transform"
               aria-label="Agendar Consultoria Gratuita"
             >
               Agendar Consultoria Gratuita
               <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-            </button>
+            </a>
             <button 
               onClick={openDiagnosticForm}
               onKeyDown={(e) => handleKeyPress(e, openDiagnosticForm)}

@@ -39,7 +39,7 @@ const Contact = () => {
     }));
     
     // Redirect to WhatsApp
-    window.open(`https://wa.link/44ujfg`, '_blank');
+    window.open(`https://wa.link/r4rqk9`, '_blank');
     
     // Reset form
     setFormData({
